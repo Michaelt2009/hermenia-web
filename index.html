@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermenia | Plataforma Académica de Investigación Exegética y Homilética</title>
+  <meta name="description" content="Descarga Hermenia para Windows: El software teológico definitivo con lector bíblico multiversión, interlineal hebreo/griego, comentarios clásicos y taller homilético.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- FUENTES ACADÉMICAS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+  
+  <!-- ICONOS FONTAWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #070d19;
+      --bg-card: rgba(15, 23, 42, 0.75);
+      --border-card: rgba(245, 158, 11, 0.25);
+      --gold-primary: #d97706;
+      --gold-light: #fbbf24;
+      --gold-glow: rgba(245, 158, 11, 0.4);
+      --blue-accent: #0284c7;
+      --blue-light: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-title: 'Cinzel', serif;
+      --font-ui: 'Inter', sans-serif;
+      --font-serif: 'Merriweather', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at 50% -10%, #172554 0%, #070d19 60%, #03060c 100%);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* CONTENEDOR CENTRAL */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAVBAR HEADER */
+    .header-nav {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      background: rgba(7, 13, 25, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .brand-logo-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px var(--gold-glow);
+    }
+    .brand-title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+    }
+    .brand-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold-light); }
+    .btn-nav-download {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      color: white;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+      transition: all 0.2s;
+    }
+    .btn-nav-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.5);
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      padding: 80px 0 60px 0;
+      text-align: center;
+      position: relative;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--gold-light);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.80rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 30%, #e2e8f0 70%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-description {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #cbd5e1;
+      max-width: 780px;
+      margin: 0 auto 36px auto;
+      font-weight: 400;
+    }
+    .cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn-primary-download {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+      color: #070d19;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.45);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .btn-primary-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.65);
+      color: #000000;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .download-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .download-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* MOCKUP PREVIEW */
+    .mockup-wrapper {
+      margin: 40px auto 0 auto;
+      max-width: 1000px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 100px -15px rgba(0, 0, 0, 0.8), 0 0 60px rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: #0f172a;
+      position: relative;
+    }
+    .mockup-header-bar {
+      background: #0b1324;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .dot-ctrl { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #eab308; }
+    .dot-green { background: #22c55e; }
+    .mockup-title {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-left: 12px;
+      font-weight: 600;
+    }
+    .mockup-inner-content {
+      padding: 40px 30px;
+      background: linear-gradient(135deg, #070d19 0%, #0f172a 100%);
+      text-align: center;
+    }
+
+    /* GRID DE MÓDULOS */
+    .section-title-box {
+      text-align: center;
+      margin: 80px 0 50px 0;
+    }
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 18px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-card);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.1);
+    }
+    .feature-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* REQUISITOS DEL SISTEMA */
+    .specs-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 80px;
+    }
+    .specs-info { flex: 1; min-width: 280px; }
+    .specs-title {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .specs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+    .spec-item i { color: #38bdf8; }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.82rem;
+    }
+    .footer-brand {
+      font-family: var(--font-title);
+      color: var(--gold-light);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVBAR -->
+  <header class="header-nav">
+    <div class="container" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+      <a href="#" class="brand-box">
+        <img src="logo.png" alt="Hermenia Logo" class="brand-logo-img">
+        <div>
+          <div class="brand-title">HERMENIA</div>
+          <div class="brand-sub">Software Teológico & Exegético</div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#modulos" class="nav-link">Módulos</a>
+        <a href="#requisitos" class="nav-link">Requisitos</a>
+        <a href="#descarga" class="btn-nav-download">
+          <i class="fas fa-download"></i> Descargar
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      
+      <div class="badge-pill">
+        <i class="fas fa-shield-halved"></i> Versión 1.0 Oficial para Windows
+      </div>
+
+      <h1 class="hero-title">
+        La Plataforma Definitiva de<br>Investigación Exegética y Homilética
+      </h1>
+
+      <p class="hero-description">
+        Diseñada para pastores, teólogos y estudiantes de la Escritura. Texto canónico en lenguas originales, crítica textual, comentarios bíblicos clásicos, cronología universal y preparación de sermones en un solo entorno de alta gama.
+      </p>
+
+      <div class="cta-group" id="descarga">
+        <!-- ENLACE DE DESCARGA DIRECTO -->
+        <a id="btn-download-installer" href="https://drive.google.com" target="_blank" class="btn-primary-download">
+          <i class="fab fa-windows" style="font-size: 1.3rem;"></i>
+          <div>
+            <div style="font-size: 1.1rem; line-height: 1.2;">Descargar para Windows</div>
+            <div style="font-size: 0.72rem; font-weight: 500; opacity: 0.9;">Instalador oficial .exe (64-bit)</div>
+          </div>
+        </a>
+
+        <a href="#modulos" class="btn-secondary">
+          <i class="fas fa-layer-group"></i> Explorar Módulos
+        </a>
+      </div>
+
+      <div class="download-meta">
+        <span><i class="fas fa-check-circle" style="color: #22c55e;"></i> 100% Gratuito y Libre</span>
+        <span><i class="fas fa-wifi-slash" style="color: #38bdf8;"></i> Funciona sin conexión (Offline)</span>
+        <span><i class="fas fa-file-code" style="color: #f59e0b;"></i> Peso: ~770 MB (Base de datos completa)</span>
+      </div>
+
+      <!-- MOCKUP PREVIEW DE LA APP -->
+      <div class="mockup-wrapper">
+        <div class="mockup-header-bar">
+          <span class="dot-ctrl dot-red"></span>
+          <span class="dot-ctrl dot-yellow"></span>
+          <span class="dot-ctrl dot-green"></span>
+          <span class="mockup-title">Hermenia - Plataforma Académica de Investigación Exegética y Homilética</span>
+        </div>
+        <div class="mockup-inner-content">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 12px;">
+            <img src="logo.png" alt="Hermenia" style="width: 72px; height: 72px; border-radius: 16px; border: 1px solid rgba(245,158,11,0.5);">
+          </div>
+          <h2 style="font-family: var(--font-title); color: #fbbf24; font-size: 1.6rem; margin-bottom: 6px;">
+            Hermenia Suite Académica v1.0
+          </h2>
+          <p style="color: #94a3b8; font-size: 0.90rem; max-width: 650px; margin: 0 auto;">
+            Canon Bíblico Exhaustivo • Lector Multiversión en Paralelo • Interlineal Morfológico Griego y Hebreo • Comentarios Matthew Henry • Cartografía Satelital y Taller Homilético
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MÓDULOS DE HERMENIA -->
+  <section id="modulos" class="container">
+    <div class="section-title-box">
+      <h2 class="section-title">Herramientas Teológicas de Alta Precisión</h2>
+      <p class="section-sub">Hermenia integra todo lo que un estudiante serio de la Biblia necesita, sin distracciones y con rigor académico.</p>
+    </div>
+
+    <div class="features-grid">
+      
+      <!-- 1. INTERLINEAL Y LECTOR -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-archway"></i>
+        </div>
+        <h3 class="feature-title">Interlineal Morfológico & Léxico</h3>
+        <p class="feature-desc">
+          Texto original en hebreo, arameo y griego Koiné con códigos Strong, análisis lematizado y desgloses morfológicos palabra por palabra.
+        </p>
+      </div>
+
+      <!-- 2. COMENTARIOS BÍBLICOS -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-book-bible"></i>
+        </div>
+        <h3 class="feature-title">Biblioteca Exegética & Comentarios</h3>
+        <p class="feature-desc">
+          Catálogo integrado de comentarios devocionales e históricos como Matthew Henry, sincronizados verso a verso con la lectura bíblica.
+        </p>
+      </div>
+
+      <!-- 3. TALLER HOMILÉTICO -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-pen-nib"></i>
+        </div>
+        <h3 class="feature-title">Taller Homilético de Sermones</h3>
+        <p class="feature-desc">
+          Un laboratorio de predicación estructurado en 5 fases exegéticas y homiléticas con exportación directa a formato Word (.doc).
+        </p>
+      </div>
+
+      <!-- 4. MAPAS & ARQUEOLOGÍA -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-earth-americas"></i>
+        </div>
+        <h3 class="feature-title">Cartografía & Rutas Bíblicas</h3>
+        <p class="feature-desc">
+          Explora mapas con coordenadas satelitales, rutas del Éxodo, viajes apostólicos, topografía y los grandes imperios de la antigüedad.
+        </p>
+      </div>
+
+      <!-- 5. HISTORIA Y TIPOLOGÍA -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-timeline"></i>
+        </div>
+        <h3 class="feature-title">Cronología & Tipología Sagrada</h3>
+        <p class="feature-desc">
+          Línea de tiempo de reyes y profetas, estudio profundo del Tabernáculo de Moisés y las fiestas solemnes como sombras mesiánicas.
+        </p>
+      </div>
+
+      <!-- 6. 100% OFFLINE -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3 class="feature-title">Estudio Autónomo y Seguro</h3>
+        <p class="feature-desc">
+          Toda la base de datos canónica reside en tu equipo. Abre la aplicación y estudia en cualquier lugar, incluso sin conexión a internet.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REQUISITOS Y GUÍA RÁPIDA -->
+  <section id="requisitos" class="container">
+    <div class="specs-box">
+      <div class="specs-info">
+        <h3 class="specs-title">Requisitos del Sistema</h3>
+        <p style="color: #94a3b8; font-size: 0.90rem;">Hermenia está optimizada para ejecutarse con gran fluidez en computadoras con Windows.</p>
+        
+        <div class="specs-list">
+          <div class="spec-item"><i class="fab fa-windows"></i> Windows 10 u 11 (64-bit)</div>
+          <div class="spec-item"><i class="fas fa-microchip"></i> Procesador x64 (Intel o AMD)</div>
+          <div class="spec-item"><i class="fas fa-memory"></i> 4 GB de memoria RAM</div>
+          <div class="spec-item"><i class="fas fa-hard-drive"></i> 1.2 GB de espacio disponible</div>
+        </div>
+      </div>
+
+      <div>
+        <a href="#descarga" class="btn-primary-download" style="padding: 14px 28px; font-size: 0.95rem;">
+          <i class="fas fa-arrow-down"></i> Descargar Ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">HERMENIA</div>
+      <p>Plataforma Académica de Investigación Exegética y Homilética • © 2026 Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
