@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hermenia | Plataforma Académica de Investigación Exegética y Homilética</title>
-  <meta name="description" content="Descarga Hermenia para Windows: El software teológico definitivo con lector bíblico multiversión, interlineal hebreo/griego, comentarios clásicos y taller homilético.">
+  <meta name="description" content="Descarga Hermenia para Windows, Mac, iPad y Android: El software teológico definitivo con lector bíblico multiversión, interlineal hebreo/griego, comentarios clásicos, tutor homilético y cartografía sagrada.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
   <!-- FUENTES ACADÉMICAS -->
@@ -59,7 +59,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
-      background: rgba(7, 13, 25, 0.85);
+      background: rgba(7, 13, 25, 0.88);
       backdrop-filter: blur(12px);
       z-index: 1000;
     }
@@ -92,7 +92,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
     }
     .nav-link {
       color: var(--text-muted);
@@ -123,7 +123,7 @@
 
     /* HERO SECTION */
     .hero-section {
-      padding: 80px 0 60px 0;
+      padding: 70px 0 50px 0;
       text-align: center;
       position: relative;
     }
@@ -144,7 +144,7 @@
     }
     .hero-title {
       font-family: var(--font-title);
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
       font-weight: 900;
       line-height: 1.15;
       margin-bottom: 20px;
@@ -153,9 +153,9 @@
       -webkit-text-fill-color: transparent;
     }
     .hero-description {
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: clamp(1rem, 2vw, 1.22rem);
       color: #cbd5e1;
-      max-width: 780px;
+      max-width: 820px;
       margin: 0 auto 36px auto;
       font-weight: 400;
     }
@@ -165,7 +165,7 @@
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     .btn-primary-download {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
@@ -211,7 +211,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 20px;
       flex-wrap: wrap;
     }
     .download-meta span { display: flex; align-items: center; gap: 6px; }
@@ -219,7 +219,7 @@
     /* MOCKUP PREVIEW */
     .mockup-wrapper {
       margin: 40px auto 0 auto;
-      max-width: 1000px;
+      max-width: 1020px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 30px 100px -15px rgba(0, 0, 0, 0.8), 0 0 60px rgba(245, 158, 11, 0.15);
@@ -251,10 +251,10 @@
       text-align: center;
     }
 
-    /* GRID DE MÓDULOS */
+    /* SECTION TITLES */
     .section-title-box {
       text-align: center;
-      margin: 80px 0 50px 0;
+      margin: 80px 0 45px 0;
     }
     .section-title {
       font-family: var(--font-title);
@@ -265,11 +265,112 @@
     }
     .section-sub {
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 680px;
       margin: 0 auto;
       font-size: 0.95rem;
     }
 
+    /* MULTI-PLATFORM DOWNLOAD GRID */
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-bottom: 60px;
+    }
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 18px;
+      padding: 28px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .platform-card.featured {
+      border: 1.5px solid var(--gold-primary);
+      background: linear-gradient(180deg, rgba(217, 119, 6, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%);
+      box-shadow: 0 10px 35px -8px rgba(245, 158, 11, 0.25);
+    }
+    .platform-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-card);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6);
+    }
+    .platform-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-available {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+    .badge-upcoming {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+    .platform-icon {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+      margin-top: 8px;
+    }
+    .platform-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .platform-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+    .btn-platform {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .btn-platform-active {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #070d19;
+      font-weight: 800;
+    }
+    .btn-platform-active:hover {
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+      color: #000;
+    }
+    .btn-platform-wait {
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+    }
+    .btn-platform-wait:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* GRID DE MÓDULOS */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -338,7 +439,7 @@
     }
     .specs-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 16px;
       margin-top: 20px;
     }
@@ -351,10 +452,122 @@
     }
     .spec-item i { color: #38bdf8; }
 
+    /* SECCIÓN LEGAL Y POLÍTICAS DE LICENCIA */
+    .legal-container {
+      background: rgba(11, 19, 36, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 22px;
+      padding: 40px 36px;
+      margin-bottom: 90px;
+      box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+    .legal-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .legal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+    .legal-nav-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 28px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .legal-tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-ui);
+      font-size: 0.90rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legal-tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .legal-tab-btn.active {
+      color: var(--gold-light);
+      background: rgba(245, 158, 11, 0.12);
+      border-bottom: 2px solid var(--gold-light);
+    }
+    .legal-content-panel {
+      display: none;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      animation: fadeIn 0.3s ease;
+    }
+    .legal-content-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .legal-content-panel h4 {
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .legal-content-panel p {
+      margin-bottom: 16px;
+    }
+    .legal-content-panel ul {
+      margin: 14px 0 20px 24px;
+      color: #cbd5e1;
+    }
+    .legal-content-panel li {
+      margin-bottom: 8px;
+    }
+    .legal-callout {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 4px solid var(--gold-primary);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      font-size: 0.88rem;
+      color: #fde68a;
+    }
+    .legal-callout-info {
+      background: rgba(2, 132, 199, 0.1);
+      border-left: 4px solid var(--blue-accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      font-size: 0.88rem;
+      color: #bae6fd;
+    }
+
     /* FOOTER */
     .footer {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 40px 0;
+      padding: 45px 0 35px 0;
       text-align: center;
       color: #64748b;
       font-size: 0.82rem;
@@ -363,10 +576,23 @@
       font-family: var(--font-title);
       color: var(--gold-light);
       font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
       margin-bottom: 8px;
     }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--gold-light); }
   </style>
 </head>
 <body>
@@ -384,7 +610,9 @@
 
       <nav class="nav-links">
         <a href="#modulos" class="nav-link">Módulos</a>
+        <a href="#plataformas" class="nav-link">Plataformas</a>
         <a href="#requisitos" class="nav-link">Requisitos</a>
+        <a href="#legal" class="nav-link">Licencias & Legal</a>
         <a href="#descarga" class="btn-nav-download">
           <i class="fas fa-download"></i> Descargar
         </a>
@@ -397,7 +625,7 @@
     <div class="container">
       
       <div class="badge-pill">
-        <i class="fas fa-shield-halved"></i> Versión 1.0 Oficial para Windows
+        <i class="fas fa-shield-halved"></i> Versión 1.0 Oficial para Windows • Multiplataforma en Expansión
       </div>
 
       <h1 class="hero-title">
@@ -405,28 +633,28 @@
       </h1>
 
       <p class="hero-description">
-        Diseñada para pastores, teólogos y estudiantes de la Escritura. Texto canónico en lenguas originales, crítica textual, comentarios bíblicos clásicos, cronología universal y preparación de sermones en un solo entorno de alta gama.
+        Diseñada para pastores, teólogos y estudiantes de la Escritura. Texto canónico en lenguas originales, interlineal lematizado, comentarios bíblicos históricos, cartografía sagrada y preparación de sermones en un solo entorno de alta gama.
       </p>
 
       <div class="cta-group" id="descarga">
-        <!-- ENLACE DE DESCARGA DIRECTO -->
+        <!-- ENLACE DE DESCARGA DIRECTO WINDOWS -->
         <a id="btn-download-installer" href="https://drive.google.com/file/d/1Qcd6IAPd6EndVpxYV6p7oiiC2N9ANhdf/view?usp=sharing" target="_blank" class="btn-primary-download">
           <i class="fab fa-windows" style="font-size: 1.3rem;"></i>
-          <div>
+          <div style="text-align: left;">
             <div style="font-size: 1.1rem; line-height: 1.2;">Descargar para Windows</div>
             <div style="font-size: 0.72rem; font-weight: 500; opacity: 0.9;">Instalador oficial .exe (64-bit)</div>
           </div>
         </a>
 
-        <a href="#modulos" class="btn-secondary">
-          <i class="fas fa-layer-group"></i> Explorar Módulos
+        <a href="#plataformas" class="btn-secondary">
+          <i class="fas fa-laptop-code"></i> Otras Plataformas (Mac, iPad, Android)
         </a>
       </div>
 
       <div class="download-meta">
         <span><i class="fas fa-check-circle" style="color: #22c55e;"></i> 100% Gratuito y Libre</span>
         <span><i class="fas fa-wifi-slash" style="color: #38bdf8;"></i> Funciona sin conexión (Offline)</span>
-        <span><i class="fas fa-file-code" style="color: #f59e0b;"></i> Peso: ~770 MB (Base de datos completa)</span>
+        <span><i class="fas fa-lock" style="color: #f59e0b;"></i> Seguridad y Criptografía de Datos</span>
       </div>
 
       <!-- MOCKUP PREVIEW DE LA APP -->
@@ -445,9 +673,81 @@
             Hermenia Suite Académica v1.0
           </h2>
           <p style="color: #94a3b8; font-size: 0.90rem; max-width: 650px; margin: 0 auto;">
-            Canon Bíblico Exhaustivo • Lector Multiversión en Paralelo • Interlineal Morfológico Griego y Hebreo • Comentarios Matthew Henry • Cartografía Satelital y Taller Homilético
+            Canon Bíblico Exhaustivo • Lector Multiversión en Paralelo • Interlineal Morfológico Griego y Hebreo • Comentarios Clásicos • Cartografía Satelital y Taller Homilético
           </p>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN MULTIPLATAFORMA -->
+  <section id="plataformas" class="container">
+    <div class="section-title-box">
+      <h2 class="section-title">Ecosistema Multiplataforma</h2>
+      <p class="section-sub">Disfruta de la potencia analítica de Hermenia en tu equipo de escritorio principal o en tus dispositivos móviles de estudio pastoral.</p>
+    </div>
+
+    <div class="platforms-grid">
+      
+      <!-- 1. WINDOWS (PRINCIPAL) -->
+      <div class="platform-card featured">
+        <span class="platform-badge badge-available"><i class="fas fa-check"></i> Disponible Ahora</span>
+        <div class="platform-icon" style="color: #00a4ef;">
+          <i class="fab fa-windows"></i>
+        </div>
+        <h3 class="platform-name">Windows PC</h3>
+        <p class="platform-desc">
+          Versión completa para Windows 10 y 11 (64-bit). Base de datos completa integrada y motor nativo offline.
+        </p>
+        <a href="https://drive.google.com/file/d/1Qcd6IAPd6EndVpxYV6p7oiiC2N9ANhdf/view?usp=sharing" target="_blank" class="btn-platform btn-platform-active">
+          <i class="fas fa-download"></i> Descargar .EXE
+        </a>
+      </div>
+
+      <!-- 2. MACOS (APPLE) -->
+      <div class="platform-card">
+        <span class="platform-badge badge-upcoming"><i class="fas fa-clock"></i> Beta en Preparación</span>
+        <div class="platform-icon" style="color: #e2e8f0;">
+          <i class="fab fa-apple"></i>
+        </div>
+        <h3 class="platform-name">macOS (Mac)</h3>
+        <p class="platform-desc">
+          Paquete universal para Apple Silicon (M1/M2/M3/M4) y procesadores Intel. Experiencia fluida en macOS Sonoma y Sequoia.
+        </p>
+        <button type="button" class="btn-platform btn-platform-wait" onclick="alert('La versión nativa para macOS (DMG) está en compilación final y pasará a distribución cerrada muy pronto. ¡Mantente atento!')">
+          <i class="fas fa-bell"></i> Notificarme para Mac
+        </button>
+      </div>
+
+      <!-- 3. IPAD / IOS -->
+      <div class="platform-card">
+        <span class="platform-badge badge-upcoming"><i class="fas fa-mobile-screen"></i> Próximamente</span>
+        <div class="platform-icon" style="color: #a78bfa;">
+          <i class="fas fa-tablet-screen-button"></i>
+        </div>
+        <h3 class="platform-name">iPad / iOS</h3>
+        <p class="platform-desc">
+          Edición adaptada para iPad y tablets Apple. Ideal para predicación desde el púlpito y estudio táctil interactivo.
+        </p>
+        <button type="button" class="btn-platform btn-platform-wait" onclick="alert('La versión para iPadOS está siendo optimizada para lectura en atril y soporte para Apple Pencil. Estará disponible próximamente.')">
+          <i class="fas fa-bell"></i> Registro iPad
+        </button>
+      </div>
+
+      <!-- 4. ANDROID (TABLETS Y MÓVILES) -->
+      <div class="platform-card">
+        <span class="platform-badge badge-upcoming"><i class="fas fa-robot"></i> En Desarrollo</span>
+        <div class="platform-icon" style="color: #34d399;">
+          <i class="fab fa-android"></i>
+        </div>
+        <h3 class="platform-name">Android Tablets</h3>
+        <p class="platform-desc">
+          Optimizada para tablets Android (Samsung Galaxy Tab, Xiaomi Pad) y smartphones de pantalla grande.
+        </p>
+        <button type="button" class="btn-platform btn-platform-wait" onclick="alert('El paquete APK y el lanzamiento en Google Play Store para tablets Android están en proceso de verificación. ¡Próximamente disponible!')">
+          <i class="fas fa-bell"></i> Próximamente APK
+        </button>
       </div>
 
     </div>
@@ -480,7 +780,7 @@
         </div>
         <h3 class="feature-title">Biblioteca Exegética & Comentarios</h3>
         <p class="feature-desc">
-          Catálogo integrado de comentarios devocionales e históricos como Matthew Henry, sincronizados verso a verso con la lectura bíblica.
+          Catálogo integrado de comentarios devocionales e históricos de autores clásicos de dominio público sincronizados verso a verso con la lectura bíblica.
         </p>
       </div>
 
@@ -536,21 +836,122 @@
     <div class="specs-box">
       <div class="specs-info">
         <h3 class="specs-title">Requisitos del Sistema</h3>
-        <p style="color: #94a3b8; font-size: 0.90rem;">Hermenia está optimizada para ejecutarse con gran fluidez en computadoras con Windows.</p>
+        <p style="color: #94a3b8; font-size: 0.90rem;">Hermenia está optimizada para ejecutarse con gran fluidez en diversas plataformas computacionales.</p>
         
         <div class="specs-list">
           <div class="spec-item"><i class="fab fa-windows"></i> Windows 10 u 11 (64-bit)</div>
-          <div class="spec-item"><i class="fas fa-microchip"></i> Procesador x64 (Intel o AMD)</div>
+          <div class="spec-item"><i class="fab fa-apple"></i> macOS 12+ (Intel o Apple Silicon)</div>
+          <div class="spec-item"><i class="fas fa-microchip"></i> Procesador x64 / ARM64</div>
           <div class="spec-item"><i class="fas fa-memory"></i> 4 GB de memoria RAM</div>
           <div class="spec-item"><i class="fas fa-hard-drive"></i> 1.2 GB de espacio disponible</div>
+          <div class="spec-item"><i class="fas fa-tablet-screen-button"></i> Pantallas táctiles recomendadas 10" o más</div>
         </div>
       </div>
 
       <div>
         <a href="https://drive.google.com/file/d/1Qcd6IAPd6EndVpxYV6p7oiiC2N9ANhdf/view?usp=sharing" target="_blank" class="btn-primary-download" style="padding: 14px 28px; font-size: 0.95rem;">
-          <i class="fas fa-arrow-down"></i> Descargar Ahora
+          <i class="fas fa-arrow-down"></i> Descargar Windows .EXE
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN LEGAL, LICENCIAS Y PROPIEDAD INTELECTUAL -->
+  <section id="legal" class="container">
+    <div class="legal-container">
+      <div class="legal-header">
+        <div class="legal-badge"><i class="fas fa-balance-scale"></i> Transparencia Legal & Licencias</div>
+        <h2 style="font-family: var(--font-title); font-size: 2rem; color: #ffffff; margin-bottom: 8px;">
+          Términos de Licencia y Propiedad Intelectual
+        </h2>
+        <p style="color: #94a3b8; font-size: 0.92rem; max-width: 720px; margin: 0 auto;">
+          Conoce el marco legal que rige el uso de Hermenia, la procedencia canónica de los textos bíblicos, las condiciones de las herramientas de inteligencia artificial y nuestras políticas de privacidad.
+        </p>
+      </div>
+
+      <!-- TABS DE NAVEGACIÓN LEGAL -->
+      <div class="legal-nav-tabs">
+        <button type="button" class="legal-tab-btn active" onclick="switchLegalTab('licencia')">
+          <i class="fas fa-file-contract"></i> 1. Licencia de Software (EULA)
+        </button>
+        <button type="button" class="legal-tab-btn" onclick="switchLegalTab('textos')">
+          <i class="fas fa-book-bookmark"></i> 2. Fuentes Bíblicas & Dominio Público
+        </button>
+        <button type="button" class="legal-tab-btn" onclick="switchLegalTab('ia')">
+          <i class="fas fa-brain"></i> 3. Descargo de Responsabilidad de IA
+        </button>
+        <button type="button" class="legal-tab-btn" onclick="switchLegalTab('privacidad')">
+          <i class="fas fa-user-shield"></i> 4. Privacidad y Datos
+        </button>
+      </div>
+
+      <!-- PANEL 1: LICENCIA DE SOFTWARE -->
+      <div id="tab-licencia" class="legal-content-panel active">
+        <h4><i class="fas fa-file-signature" style="color: var(--gold-light);"></i> Licencia de Usuario Final (EULA)</h4>
+        <p>
+          Hermenia Suite Académica se distribuye para fines de estudio bíblico personal, investigación teológica ministerial y docencia cristiana. Al descargar, instalar o utilizar este software, usted acepta los siguientes términos de licencia:
+        </p>
+        <ul>
+          <li><strong>Uso Personal y Ministerial:</strong> Se concede al usuario una licencia no exclusiva, personal y gratuita para instalar y ejecutar el software en sus computadoras personales y dispositivos compatibles.</li>
+          <li><strong>Prohibición de Redistribución Comercial:</strong> Queda estrictamente prohibida la venta, reempaquetado, sublicenciamiento o cobro a terceros por la descarga o distribución directa de los instaladores o datos de Hermenia sin autorización previa por escrito.</li>
+          <li><strong>Modificación y Descompilación:</strong> No está permitido alterar, realizar ingeniería inversa maliciosa o remover los avisos de autoría y marcas integradas en los binarios del software.</li>
+          <li><strong>Sin Garantía Expresa:</strong> El software se suministra "tal cual" (as-is), sin garantías de idoneidad para un propósito particular diferente al estudio bíblico y pastoral reflexivo.</li>
+        </ul>
+        <div class="legal-callout">
+          <strong>Aviso Pastoral:</strong> Hermenia está concebida como una plataforma al servicio de la proclamación fidedigna de las Sagradas Escrituras y el enriquecimiento de la Iglesia universal.
+        </div>
+      </div>
+
+      <!-- PANEL 2: FUENTES BÍBLICAS & DOMINIO PÚBLICO -->
+      <div id="tab-textos" class="legal-content-panel">
+        <h4><i class="fas fa-scroll" style="color: #38bdf8;"></i> Procedencia Canónica y Derechos Editoriales</h4>
+        <p>
+          Hermenia prioriza de manera estricta el uso de manuscritos, versiones históricas y obras teológicas que se encuentran en el <strong>Dominio Público internacional</strong> o bajo licencias académicas abiertas:
+        </p>
+        <ul>
+          <li><strong>Versiones Bíblicas de Dominio Público:</strong> Las traducciones históricas integradas, incluyendo la <em>Reina-Valera 1909</em> (RVR1909), la <em>King James Version</em> (KJV 1611/1769), y la <em>American Standard Version</em> (ASV 1901), forman parte del dominio público universal y son libres de reproducción para investigación y enseñanza.</li>
+          <li><strong>Manuscritos y Lenguas Originales:</strong> El Texto Masorético Hebreo (Westminster Leningrad Codex), el Textus Receptus Griego y las ediciones críticas académicas de dominio público se integran con códigos léxicos de James Strong (1890) para el análisis etimológico y morfológico sin restricciones comerciales.</li>
+          <li><strong>Aclaración sobre la Reina-Valera 1960 (RVR1960):</strong> El texto de la versión Reina-Valera 1960 es propiedad intelectual registrada de las Sociedades Bíblicas Unidas (SBU). Cualquier referencia o cotejo textual presentado en la plataforma se realiza exclusivamente con fines de estudio comparativo, cita académica y análisis no comercial bajo los límites de la doctrina internacional del uso legítimo (<em>Fair Use</em>), sin reclamar propiedad alguna sobre dicho texto sagrado.</li>
+          <li><strong>Comentarios Clásicos:</strong> Las notas exegéticas y devocionales históricas (como la obra original de Matthew Henry, John Gill, Jamieson-Fausset-Brown) corresponden a textos clásicos cuyos derechos patrimoniales han prescrito conforme a las leyes de propiedad intelectual.</li>
+        </ul>
+        <div class="legal-callout-info">
+          <strong>Reconocimiento de Marcas:</strong> Todas las marcas registradas, nombres de traducciones modernas y sellos editoriales mencionados pertenecen a sus respectivos titulares y se citan únicamente con propósitos identificativos y académicos.
+        </div>
+      </div>
+
+      <!-- PANEL 3: DESCARGO DE IA -->
+      <div id="tab-ia" class="legal-content-panel">
+        <h4><i class="fas fa-microchip" style="color: #a78bfa;"></i> Descargo de Responsabilidad de Inteligencia Artificial</h4>
+        <p>
+          Hermenia incorpora herramientas opcionales de asistencia computacional y análisis lingüístico basadas en modelos de lenguaje de última generación:
+        </p>
+        <ul>
+          <li><strong>Naturaleza Algorítmica y Asistiva:</strong> Las respuestas generadas por los módulos de IA (tales como el tutor homilético, las sugerencias de bosquejos, el resumen sintáctico o el análisis devocional) son producto de procesamiento algorítmico probabilístico. <strong>No constituyen doctrina oficial, magisterio eclesiástico, ni revelación infalible.</strong></li>
+          <li><strong>Prohibición de Atribuciones Falsas:</strong> Los motores de IA de Hermenia tienen configuradas directivas estrictas de seguridad que prohíben inventar citas bibliográficas, atribuir textos generados a comentaristas históricos o contemporáneos protegidos por derechos de autor, o reproducir obras con copyright. Cualquier similitud con textos de terceros es puramente analítica o coincidente.</li>
+          <li><strong>Responsabilidad Teológica del Usuario:</strong> Todo bosquejo, división homilética o propuesta de sermón debe ser revisado, corroborado en el texto bíblico y validado doctrinalmente por el pastor, maestro o predicador antes de ser expuesto en público. Hermenia no asume responsabilidad alguna por interpretaciones o aplicaciones doctrinales derivadas del uso de la herramienta.</li>
+        </ul>
+        <div class="legal-callout">
+          <strong>Seguridad de Credenciales:</strong> La plataforma no expone claves privadas de API a los clientes y canaliza las consultas a través de servidores protegidos con estrictos controles de tasa de peticiones y mitigación de abusos.
+        </div>
+      </div>
+
+      <!-- PANEL 4: PRIVACIDAD Y DATOS -->
+      <div id="tab-privacidad" class="legal-content-panel">
+        <h4><i class="fas fa-shield-alt" style="color: #4ade80;"></i> Política de Privacidad y Tratamiento de Información</h4>
+        <p>
+          En Hermenia nos comprometemos con la privacidad de los pastores y estudiosos de la Palabra:
+        </p>
+        <ul>
+          <li><strong>Almacenamiento Local Prioritario:</strong> Sus notas de estudio, proyectos de sermón, anotaciones al margen y preferencias personales se almacenan de manera local y encriptada en su propio equipo.</li>
+          <li><strong>Sincronización en la Nube (Opcional):</strong> Si usted decide iniciar sesión mediante autenticación segura de Google o cuenta autorizada (vía Supabase), la sincronización se realiza con canales encriptados SSL/TLS de 256 bits bajo políticas de aislamiento de filas (RLS), garantizando que ningún otro usuario tenga acceso a sus sermones o datos personales.</li>
+          <li><strong>No Comercialización de Datos:</strong> Hermenia no vende, no alquila y no comparte información de sus usuarios con empresas de publicidad, corredores de datos ni terceros.</li>
+          <li><strong>Telemetría Anónima de Uso:</strong> Únicamente se registran métricas técnicas agregadas y anónimas para monitorear la salud del servicio y prevenir ataques de denegación o saturación de los servidores.</li>
+        </ul>
+        <div class="legal-callout-info">
+          <strong>Contacto Legal:</strong> Para consultas sobre derechos de autor, licencias institucionales para seminarios o requerimientos de privacidad, puede comunicarse con el equipo de soporte oficial de Hermenia.
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -558,9 +959,49 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-brand">HERMENIA</div>
-      <p>Plataforma Académica de Investigación Exegética y Homilética • © 2026 Todos los derechos reservados.</p>
+      <p style="margin-bottom: 10px;">Plataforma Académica de Investigación Exegética y Homilética</p>
+      
+      <div class="footer-links">
+        <a href="#plataformas" class="footer-link">Descargas</a>
+        <a href="#modulos" class="footer-link">Módulos</a>
+        <a href="#requisitos" class="footer-link">Requisitos</a>
+        <a href="#legal" class="footer-link" onclick="switchLegalTab('licencia')">Licencia (EULA)</a>
+        <a href="#legal" class="footer-link" onclick="switchLegalTab('textos')">Derechos Bíblicos</a>
+        <a href="#legal" class="footer-link" onclick="switchLegalTab('ia')">Aviso Legal de IA</a>
+        <a href="#legal" class="footer-link" onclick="switchLegalTab('privacidad')">Privacidad</a>
+      </div>
+
+      <p style="font-size: 0.76rem; color: #475569; margin-top: 14px;">
+        © 2026 Hermenia Software. Todos los derechos reservados. Las referencias canónicas y citas bíblicas se rigen bajo sus respectivos regímenes de dominio público y doctrina de uso legítimo con fines de investigación académica.
+      </p>
     </div>
   </footer>
+
+  <!-- SCRIPT PARA GESTIÓN DE PESTAÑAS LEGALES -->
+  <script>
+    function switchLegalTab(tabName) {
+      // Ocultar todos los paneles
+      const panels = document.querySelectorAll('.legal-content-panel');
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Desactivar botones
+      const buttons = document.querySelectorAll('.legal-tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      // Activar el seleccionado
+      const targetPanel = document.getElementById('tab-' + tabName);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+
+      // Buscar y activar el botón correspondiente
+      buttons.forEach(b => {
+        if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabName)) {
+          b.classList.add('active');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
