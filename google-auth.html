@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar sesión: Cuentas de Google</title>
+  <title>Iniciar sesión con Google · Hermenia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', -apple-system, sans-serif; }
     body {
-      background-color: #f0f4f9;
-      color: #1f1f1f;
+      background-color: #f8fafc;
+      color: #0f172a;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,225 +21,56 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 28px;
+      border-radius: 24px;
       width: 100%;
       max-width: 440px;
-      padding: 40px 36px 36px 36px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e0e2ec;
+      padding: 44px 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
       display: flex;
       flex-direction: column;
-    }
-    .google-logo {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 500;
-      color: #1f1f1f;
-      line-height: 1.33;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      font-size: 15px;
-      color: #444746;
-      line-height: 1.4;
-      margin-bottom: 28px;
-    }
-    .account-item {
-      display: flex;
       align-items: center;
-      padding: 12px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      border: 1px solid #e0e2ec;
-      margin-bottom: 10px;
-      transition: background 0.15s ease, border-color 0.15s ease;
-    }
-    .account-item:hover {
-      background: #f7f9fc;
-      border-color: #c4c7d0;
-    }
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #0b57d0;
-      color: white;
-      font-weight: 500;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 14px;
-      flex-shrink: 0;
-    }
-    .avatar.green { background: #137333; }
-    .avatar.purple { background: #7c3aed; }
-    .account-info {
-      flex: 1;
-      min-width: 0;
-    }
-    .account-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1f1f1f;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .account-email {
-      font-size: 12px;
-      color: #444746;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .badge-active {
-      font-size: 11px;
-      background: #e8f0fe;
-      color: #0b57d0;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-    .use-another-btn {
-      display: flex;
-      align-items: center;
-      padding: 12px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      color: #0b57d0;
-      font-size: 14px;
-      font-weight: 500;
-      margin-top: 4px;
-      border: 1px dashed #c4c7d0;
-      transition: background 0.15s ease;
-    }
-    .use-another-btn:hover {
-      background: #f0f4f9;
-    }
-    .use-another-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #f0f4f9;
-      color: #0b57d0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 14px;
-      font-size: 20px;
-    }
-    .input-group {
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    .input-field {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 15px;
-      border: 1px solid #747775;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .input-field:focus {
-      border-color: #0b57d0;
-      box-shadow: 0 0 0 2px rgba(11, 87, 208, 0.2);
-    }
-    .legal-notice {
-      font-size: 12px;
-      color: #444746;
-      line-height: 1.5;
-      margin-top: 24px;
-      border-top: 1px solid #e0e2ec;
-      padding-top: 18px;
-    }
-    .legal-notice a {
-      color: #0b57d0;
-      text-decoration: none;
-    }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 24px;
-    }
-    .btn-text {
-      background: none;
-      border: none;
-      color: #0b57d0;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 8px 12px;
-      border-radius: 8px;
-    }
-    .btn-text:hover {
-      background: #f0f4f9;
-    }
-    .btn-primary {
-      background: #0b57d0;
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.15s ease, box-shadow 0.15s ease;
-    }
-    .btn-primary:hover {
-      background: #0842a0;
-      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15);
-    }
-    .spinner-view {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 0;
       text-align: center;
     }
+    .google-logo { width: 52px; height: 52px; margin-bottom: 20px; }
+    h1 { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    p { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 24px; }
     .spinner {
       width: 44px;
       height: 44px;
-      border: 4px solid #e0e2ec;
-      border-top-color: #0b57d0;
+      border: 4px solid #e2e8f0;
+      border-top-color: #4285F4;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin-bottom: 18px;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    .footer {
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      justify-content: space-between;
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .badge-success {
+      display: inline-flex;
       align-items: center;
-      margin-top: 16px;
-      font-size: 12px;
-      color: #444746;
-      padding: 0 12px;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
     }
-    .footer a {
-      color: #444746;
-      text-decoration: none;
-      margin-left: 14px;
+    .badge-error {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #fee2e2;
+      color: #991b1b;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
-
   <div class="card">
-    <!-- Google Official SVG Logo -->
     <svg class="google-logo" viewBox="0 0 24 24">
       <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.87c2.27-2.09 3.67-5.17 3.67-9.15z"/>
       <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.87-3.05c-1.08.72-2.45 1.16-4.06 1.16-3.13 0-5.78-2.11-6.73-4.96H1.25v3.15C3.25 21.36 7.35 24 12 24z"/>
@@ -253,173 +78,113 @@
       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.25 2.64 1.25 6.61l4.02 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/>
     </svg>
 
-    <!-- PANTALLA 1: SELECCIONAR CUENTA -->
-    <div id="view-choose-account">
-      <h1>Elige una cuenta</h1>
-      <p class="subtitle">para ir a <strong>Hermenia Studio</strong></p>
-
-      <div id="accounts-list">
-        <!-- Cuenta 1 Detectada / Previa -->
-        <div class="account-item" onclick="seleccionarCuenta('Michael Rodriguez', 'pastor.michael.rdz@gmail.com', 'M')">
-          <div class="avatar">M</div>
-          <div class="account-info">
-            <div class="account-name">Michael Rodriguez</div>
-            <div class="account-email">pastor.michael.rdz@gmail.com</div>
-          </div>
-          <span class="badge-active">Sesión activa</span>
-        </div>
-
-        <!-- Cuenta 2 Personal / Teología -->
-        <div class="account-item" onclick="seleccionarCuenta('Ministerio Hermenia', 'investigacion.hermenia@gmail.com', 'H')">
-          <div class="avatar purple">H</div>
-          <div class="account-info">
-            <div class="account-name">Ministerio Hermenia</div>
-            <div class="account-email">investigacion.hermenia@gmail.com</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Usar otra cuenta -->
-      <div class="use-another-btn" onclick="mostrarFormularioOtraCuenta()">
-        <div class="use-another-icon">👤</div>
-        <div>Usar otra cuenta de Google</div>
-      </div>
-
-      <div class="legal-notice">
-        Para continuar, Google compartirá tu nombre, dirección de correo electrónico, preferencia de idioma y foto de perfil con Hermenia Studio. Consulta las <a href="#">Políticas de privacidad</a> y los <a href="#">Términos del servicio</a> de Hermenia.
-      </div>
-    </div>
-
-    <!-- PANTALLA 2: INGRESAR OTRA CUENTA MANUALMENTE -->
-    <div id="view-manual-account" style="display: none;">
-      <h1>Iniciar sesión</h1>
-      <p class="subtitle">Usa tu cuenta de Google</p>
-
-      <form id="form-google-signin" onsubmit="enviarCuentaManual(event)">
-        <div class="input-group">
-          <label style="font-size: 13px; font-weight: 500; color: #444746; margin-bottom: 6px;">Correo electrónico o teléfono</label>
-          <input type="email" id="input-google-email" class="input-field" placeholder="ejemplo@gmail.com" required autofocus />
-        </div>
-
-        <div class="input-group">
-          <label style="font-size: 13px; font-weight: 500; color: #444746; margin-bottom: 6px;">Nombre o Ministerio (Opcional)</label>
-          <input type="text" id="input-google-name" class="input-field" placeholder="Tu nombre completo" />
-        </div>
-
-        <div style="font-size: 13px; color: #444746; line-height: 1.4; margin-top: 10px;">
-          ¿No es tu computadora? Usa el modo invitado para navegar de forma privada. <a href="#" style="color:#0b57d0; text-decoration:none;">Más información</a>
-        </div>
-
-        <div class="actions">
-          <button type="button" class="btn-text" onclick="mostrarListaCuentas()">Volver</button>
-          <button type="submit" class="btn-primary">Siguiente</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- PANTALLA 3: CARGANDO / VERIFICANDO -->
-    <div id="view-loading" class="spinner-view">
-      <div class="spinner"></div>
-      <h3 style="font-size: 17px; font-weight: 500; color: #1f1f1f; margin-bottom: 6px;">Verificando con Google...</h3>
-      <p style="font-size: 13px; color: #444746;">Iniciando sesión segura en Hermenia Studio</p>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    <div>Español (Latinoamérica)</div>
-    <div>
-      <a href="#">Ayuda</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Condiciones</a>
-    </div>
+    <div class="spinner" id="loading-spinner"></div>
+    <h1 id="status-title">Conectando con Google...</h1>
+    <p id="status-desc">Redirigiendo a la pantalla oficial de inicio de sesión de Google...</p>
+    <div id="status-badge"></div>
   </div>
 
   <script>
-    // Recuperar cuentas previas si existen en localStorage
-    try {
-      const prevAccount = localStorage.getItem("hermenia_perfil_usuario_v1");
-      if (prevAccount) {
-        const u = JSON.parse(prevAccount);
-        if (u.email && u.authProvider === "google") {
-          const list = document.getElementById("accounts-list");
-          const letter = (u.nombre || u.email).charAt(0).toUpperCase();
-          list.innerHTML = `
-            <div class="account-item" onclick="seleccionarCuenta('${u.nombre}', '${u.email}', '${letter}')">
-              <div class="avatar green">${letter}</div>
-              <div class="account-info">
-                <div class="account-name">${u.nombre}</div>
-                <div class="account-email">${u.email}</div>
-              </div>
-              <span class="badge-active">Sesión previa</span>
-            </div>
-          ` + list.innerHTML;
-        }
-      }
-    } catch {}
+    const SUPABASE_URL = "https://zukprpbsyycoxorkscfn.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1a3BycGJzeXljb3hvcmtzY2ZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwMTcwNTksImV4cCI6MjA3NjU5MzA1OX0.iWj28kR_z-7m2_NfQ0g-5P0fW5c6k9X9W4-s0a3e8eE";
+    const REDIRECT_URL = window.location.origin + window.location.pathname;
 
-    function mostrarFormularioOtraCuenta() {
-      document.getElementById("view-choose-account").style.display = "none";
-      document.getElementById("view-manual-account").style.display = "block";
-      setTimeout(() => document.getElementById("input-google-email")?.focus(), 50);
-    }
+    async function handleAuth() {
+      const hash = window.location.hash ? window.location.hash.substring(1) : "";
+      const search = window.location.search ? window.location.search.substring(1) : "";
+      const params = new URLSearchParams(hash || search);
+      const accessToken = params.get("access_token");
 
-    function mostrarListaCuentas() {
-      document.getElementById("view-manual-account").style.display = "none";
-      document.getElementById("view-choose-account").style.display = "block";
-    }
+      if (accessToken) {
+        document.getElementById("status-title").textContent = "¡Autenticación con Google exitosa!";
+        document.getElementById("status-desc").textContent = "Obteniendo datos de tu perfil y sincronizando con Hermenia...";
 
-    function seleccionarCuenta(name, email, letter) {
-      finalizarLogin(name, email);
-    }
+        try {
+          const userRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+            headers: {
+              "Authorization": `Bearer ${accessToken}`,
+              "apikey": SUPABASE_ANON_KEY
+            }
+          });
 
-    function enviarCuentaManual(e) {
-      e.preventDefault();
-      const email = document.getElementById("input-google-email").value.trim();
-      const nameIn = document.getElementById("input-google-name").value.trim();
-      if (!email) return;
+          if (!userRes.ok) throw new Error("No se pudo obtener el perfil de Google");
+          const userData = await userRes.json();
 
-      const derivedName = email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
-      const finalName = nameIn || derivedName;
-      finalizarLogin(finalName, email);
-    }
+          const email = userData.email || "";
+          const nombre = userData.user_metadata?.full_name || userData.user_metadata?.name || email.split("@")[0];
+          const avatar = userData.user_metadata?.avatar_url || userData.user_metadata?.picture || "";
 
-    function finalizarLogin(name, email) {
-      document.getElementById("view-choose-account").style.display = "none";
-      document.getElementById("view-manual-account").style.display = "none";
-      document.getElementById("view-loading").style.display = "flex";
-
-      const authData = {
-        success: true,
-        nombre: name,
-        email: email,
-        provider: "google",
-        sessionToken: "goog_auth_" + Date.now() + "_" + Math.random().toString(36).slice(2, 8),
-        googleId: "gid_" + Math.random().toString(36).slice(2, 10)
-      };
-
-      setTimeout(() => {
-        // Enviar a Electron si existe IPC
-        if (window.require) {
+          // Actualizar en Supabase usuarios_registrados
           try {
-            const { ipcRenderer } = window.require("electron");
-            ipcRenderer.send("auth:googleSuccess", authData);
-            return;
+            await fetch(`${SUPABASE_URL}/rest/v1/usuarios_registrados`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_ANON_KEY,
+                "Authorization": `Bearer ${accessToken}`,
+                "Prefer": "resolution=merge-duplicates"
+              },
+              body: JSON.stringify({
+                id: userData.id,
+                email: email,
+                nombre: nombre,
+                auth_provider: "google",
+                estado: "activo",
+                ultimo_acceso: new Date().toISOString()
+              })
+            });
           } catch {}
+
+          const payload = {
+            success: true,
+            email: email,
+            nombre: nombre,
+            avatar: avatar,
+            provider: "google",
+            sessionToken: accessToken,
+            googleId: userData.id
+          };
+
+          document.getElementById("loading-spinner").style.display = "none";
+          document.getElementById("status-title").textContent = "¡Bienvenido, " + nombre + "!";
+          document.getElementById("status-desc").textContent = "Tu cuenta " + email + " ha sido vinculada correctamente. Regresando a la aplicación...";
+          document.getElementById("status-badge").innerHTML = '<span class="badge-success">✓ Cuenta de Google vinculada</span>';
+
+          // Notificar a Electron si existe IPC
+          if (window.require) {
+            try {
+              const { ipcRenderer } = window.require("electron");
+              ipcRenderer.send("auth:googleSuccess", payload);
+            } catch {}
+          }
+
+          // Notificar a ventana padre si es web popup
+          if (window.opener) {
+            window.opener.postMessage({ type: "HERMENIA_GOOGLE_AUTH_SUCCESS", data: payload }, "*");
+          }
+
+          localStorage.setItem("hermenia_google_auth_pending", JSON.stringify(payload));
+
+          setTimeout(() => {
+            window.close();
+          }, 800);
+
+        } catch (err) {
+          document.getElementById("loading-spinner").style.display = "none";
+          document.getElementById("status-title").textContent = "Error al vincular cuenta";
+          document.getElementById("status-desc").textContent = err.message || "No se pudo conectar con el servidor.";
+          document.getElementById("status-badge").innerHTML = '<span class="badge-error">✕ Error de vinculación</span>';
         }
 
-        // Si window.opener existe (web popup)
-        if (window.opener) {
-          window.opener.postMessage({ type: "HERMENIA_GOOGLE_AUTH_SUCCESS", data: authData }, "*");
-          window.close();
-          return;
-        }
-
-        // Fallback local
-        localStorage.setItem("hermenia_google_auth_pending", JSON.stringify(authData));
-        window.close();
-      }, 700);
+      } else {
+        // Redirigir directamente al endpoint oficial de OAuth de Google
+        const targetRedirect = encodeURIComponent(REDIRECT_URL.startsWith("http") ? REDIRECT_URL : "https://hermenia-web-9vg5.vercel.app/google-auth.html");
+        const oauthUrl = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${targetRedirect}`;
+        window.location.href = oauthUrl;
+      }
     }
+
+    handleAuth();
   </script>
 </body>
 </html>
