@@ -1901,6 +1901,20 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       if (mobileTxt) mobileTxt.textContent = "Conectado: " + (name || email);
 
       cerrarModal('modalAuth');
+
+      // Sincronizar automáticamente con Supabase usuarios_registrados
+      if (supabaseClient && user.email) {
+        supabaseClient.from('usuarios_registrados').upsert({
+          id: user.id || ('usr_' + Date.now()),
+          nombre: name,
+          email: user.email,
+          auth_provider: 'google',
+          licencia_tipo: planPendiente || 'prueba_15_dias',
+          estado: 'activo',
+          fecha_registro: new Date().toISOString(),
+          ultimo_acceso: new Date().toISOString()
+        }, { onConflict: 'email' }).then(() => {}, (err) => console.warn('Sync usuario:', err));
+      }
     }
 
     function setUsuarioDesconectado() {
