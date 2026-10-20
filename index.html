@@ -1888,17 +1888,32 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
 
     function setUsuarioAutenticado(user) {
       usuarioActual = user;
-      const email = user.email || "Usuario Google";
-      const name = user.user_metadata?.full_name || email.split('@')[0];
+      const email = user.email || "";
+      const rawName = user.user_metadata?.full_name 
+                   || user.user_metadata?.name 
+                   || (user.user_metadata?.given_name ? (user.user_metadata.given_name + (user.user_metadata.family_name ? ' ' + user.user_metadata.family_name : '')) : null)
+                   || (email ? email.split('@')[0] : "Usuario");
+      const name = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+      const avatarUrl = user.user_metadata?.avatar_url || user.user_metadata?.picture;
 
       document.getElementById('btnNavLogin').style.display = 'none';
       const userPill = document.getElementById('userPill');
       userPill.style.display = 'inline-flex';
-      document.getElementById('userEmailTxt').textContent = email.length > 22 ? email.substring(0, 19) + '...' : email;
-      document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+      
+      const userEmailTxt = document.getElementById('userEmailTxt');
+      userEmailTxt.textContent = name.length > 22 ? name.substring(0, 19) + '...' : name;
+      userEmailTxt.title = email ? (name + ' (' + email + ')') : name;
+
+      const userAvatar = document.getElementById('userAvatar');
+      if (avatarUrl) {
+        userAvatar.innerHTML = '<img src="' + avatarUrl + '" alt="' + name + '" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">';
+        userAvatar.style.background = 'transparent';
+      } else {
+        userAvatar.textContent = name.charAt(0).toUpperCase();
+      }
 
       const mobileTxt = document.getElementById('mobileLoginTxt');
-      if (mobileTxt) mobileTxt.textContent = "Conectado: " + (name || email);
+      if (mobileTxt) mobileTxt.textContent = "Hola, " + name;
 
       cerrarModal('modalAuth');
 
