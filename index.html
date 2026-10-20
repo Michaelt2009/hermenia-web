@@ -1141,9 +1141,9 @@
           </div>
         </div>
 
-        <button type="button" class="btn-nav-download" onclick="mostrarDescargasBloqueadas('Windows')" style="cursor: pointer; background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5;">
-          <i class="fas fa-lock"></i> Descargas Bloqueadas
-        </button>
+        <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.Setup.1.0.0.exe" class="btn-nav-download">
+          <i class="fas fa-download"></i> Descargar
+        </a>
       </nav>
 
       <!-- BOTÓN HAMBURGUESA MÓVIL -->
@@ -1176,9 +1176,9 @@
         <i class="fab fa-google" style="color: #4285F4;"></i> <span id="mobileLoginTxt">Iniciar Sesión con Google</span>
       </button>
 
-      <button type="button" class="mobile-btn-download" onclick="mostrarDescargasBloqueadas('Windows'); closeMobileMenu();" style="cursor: pointer; background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); color: #fca5a5; width:100%;">
-        <i class="fas fa-lock"></i> Descargas Bloqueadas
-      </button>
+      <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.Setup.1.0.0.exe" class="mobile-btn-download" onclick="closeMobileMenu()">
+        <i class="fas fa-download"></i> Descargar Windows .EXE
+      </a>
     </nav>
   </div>
 
@@ -1202,13 +1202,13 @@
 
       <div class="cta-group" id="descarga">
         <!-- BOTÓN PRINCIPAL WINDOWS -->
-        <button type="button" id="btn-download-installer" onclick="mostrarDescargasBloqueadas('Windows')" class="btn-primary-download" style="background: linear-gradient(135deg, #334155, #1e293b); border: 1px solid #475569; cursor: pointer;">
-          <i class="fas fa-lock" style="font-size: 1.3rem; color: #f59e0b;"></i>
+        <a id="btn-download-installer" href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.Setup.1.0.0.exe" target="_blank" class="btn-primary-download">
+          <i class="fab fa-windows" style="font-size: 1.3rem;"></i>
           <div style="text-align: left;">
-            <div style="font-size: 1.05rem; line-height: 1.2;">Descargas Bloqueadas</div>
-            <div style="font-size: 0.72rem; font-weight: 500; opacity: 0.9; color: #cbd5e1;">Acceso Restringido por Licencia</div>
+            <div style="font-size: 1.05rem; line-height: 1.2;">Descargar para Windows</div>
+            <div style="font-size: 0.72rem; font-weight: 500; opacity: 0.9;">Instalador oficial .exe (64-bit)</div>
           </div>
-        </button>
+        </a>
 
         <a href="#planes" class="btn-secondary">
           <i class="fas fa-crown" style="color: var(--gold-light);"></i> Ver Planes y Licencias
@@ -1248,58 +1248,55 @@
   <!-- SECCIÓN MULTIPLATAFORMA (SOLO WINDOWS, MAC, ANDROID) -->
   <section id="plataformas" class="container">
     <div class="section-title-box">
-      <div class="badge-pill" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5;">
-        <i class="fas fa-lock"></i> Acceso Restringido por Administración
-      </div>
-      <h2 class="section-title">Instaladores de Hermenia Suite</h2>
-      <p class="section-sub">Las descargas públicas están temporalmente suspendidas. El acceso a los instaladores está reservado para usuarios con cuenta vinculada y licencia ministerial activa o prueba aprobada.</p>
+      <h2 class="section-title">Descargas Oficiales por Plataforma</h2>
+      <p class="section-sub">Instaladores directos, compilados y verificados listos para tu equipo de trabajo pastoral o estudio móvil.</p>
     </div>
 
     <div class="platforms-grid">
       
       <!-- 1. WINDOWS (EXE) -->
-      <div class="platform-card featured" style="border-color: rgba(239,68,68,0.3);">
-        <span class="platform-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);"><i class="fas fa-lock"></i> Descarga Bloqueada</span>
-        <div class="platform-icon" style="color: #64748b;">
+      <div class="platform-card featured">
+        <span class="platform-badge"><i class="fas fa-check"></i> Disponible Ahora</span>
+        <div class="platform-icon" style="color: #00a4ef;">
           <i class="fab fa-windows"></i>
         </div>
         <h3 class="platform-name">Windows PC</h3>
         <p class="platform-desc">
-          Instalador oficial de 64-bit para Windows 10 y 11. Requiere activación previa de cuenta o clave ministerial.
+          Instalador oficial de 64-bit para Windows 10 y 11. Incluye base de datos SQLite y gráficos de alta definición.
         </p>
-        <button type="button" onclick="mostrarDescargasBloqueadas('Windows')" class="btn-platform btn-platform-windows" style="background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.3); color: #fca5a5; cursor: pointer;">
-          <i class="fas fa-lock"></i> Descarga Bloqueada
-        </button>
+        <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.Setup.1.0.0.exe" target="_blank" class="btn-platform btn-platform-windows">
+          <i class="fas fa-download"></i> Descargar .EXE (113 MB)
+        </a>
       </div>
 
       <!-- 2. MACOS (DMG) -->
-      <div class="platform-card" style="border-color: rgba(239,68,68,0.2);">
-        <span class="platform-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);"><i class="fas fa-lock"></i> Descarga Bloqueada</span>
-        <div class="platform-icon" style="color: #64748b;">
+      <div class="platform-card">
+        <span class="platform-badge"><i class="fas fa-check"></i> Disponible Ahora</span>
+        <div class="platform-icon" style="color: #e2e8f0;">
           <i class="fab fa-apple"></i>
         </div>
         <h3 class="platform-name">macOS (Mac)</h3>
         <p class="platform-desc">
-          Paquete nativo .DMG para Apple Silicon e Intel. Requiere activación previa de cuenta o clave ministerial.
+          Paquete nativo .DMG universal compatible con Apple Silicon (chips M1/M2/M3/M4) y procesadores Intel.
         </p>
-        <button type="button" onclick="mostrarDescargasBloqueadas('macOS')" class="btn-platform btn-platform-mac" style="background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.3); color: #fca5a5; cursor: pointer;">
-          <i class="fas fa-lock"></i> Descarga Bloqueada
-        </button>
+        <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia-1.0.0.dmg" target="_blank" class="btn-platform btn-platform-mac">
+          <i class="fas fa-download"></i> Descargar .DMG (157 MB)
+        </a>
       </div>
 
       <!-- 3. ANDROID (APK) -->
-      <div class="platform-card" style="border-color: rgba(239,68,68,0.2);">
-        <span class="platform-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);"><i class="fas fa-lock"></i> Descarga Bloqueada</span>
-        <div class="platform-icon" style="color: #64748b;">
+      <div class="platform-card">
+        <span class="platform-badge"><i class="fas fa-check"></i> Disponible Ahora</span>
+        <div class="platform-icon" style="color: #34d399;">
           <i class="fab fa-android"></i>
         </div>
         <h3 class="platform-name">Android Tablets</h3>
         <p class="platform-desc">
-          Paquete .APK para tablets y dispositivos móviles. Requiere activación previa de cuenta o clave ministerial.
+          Paquete .APK instalable directo para tablets Android (Galaxy Tab, Xiaomi Pad) y teléfonos inteligentes.
         </p>
-        <button type="button" onclick="mostrarDescargasBloqueadas('Android')" class="btn-platform btn-platform-android" style="background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.3); color: #fca5a5; cursor: pointer;">
-          <i class="fas fa-lock"></i> Descarga Bloqueada
-        </button>
+        <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.apk" target="_blank" class="btn-platform btn-platform-android">
+          <i class="fas fa-download"></i> Descargar .APK (34 MB)
+        </a>
       </div>
 
     </div>
@@ -1360,9 +1357,9 @@
           </ul>
         </div>
 
-        <button type="button" class="btn-plan btn-plan-free" onclick="mostrarDescargasBloqueadas('Edición Gratuita')" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; cursor: pointer;">
-          <i class="fas fa-ban"></i> Descarga Gratuita Bloqueada
-        </button>
+        <a href="#plataformas" class="btn-plan btn-plan-free">
+          <i class="fas fa-download"></i> Descargar y Usar Gratis
+        </a>
       </div>
 
       <!-- PLAN 2: PRUEBA PRO 15 DÍAS (DESTACADO) -->
@@ -1587,9 +1584,9 @@
       </div>
 
       <div>
-        <button type="button" onclick="mostrarDescargasBloqueadas('Windows')" class="btn-primary-download" style="background: linear-gradient(135deg, #334155, #1e293b); border: 1px solid #475569; padding: 14px 28px; font-size: 0.95rem; cursor: pointer;">
-          <i class="fas fa-lock" style="color: #f59e0b;"></i> Descarga Bloqueada
-        </button>
+        <a href="https://github.com/Michaelt2009/hermenia-web/releases/download/v1.0.0/Hermenia.Setup.1.0.0.exe" target="_blank" class="btn-primary-download" style="padding: 14px 28px; font-size: 0.95rem;">
+          <i class="fas fa-arrow-down"></i> Descargar Windows .EXE
+        </a>
       </div>
     </div>
   </section>
@@ -2134,51 +2131,6 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
 
     if (mobileBtn) mobileBtn.addEventListener('click', openMobileMenu);
     if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
-  </script>
-
-
-  <!-- MODAL: DESCARGAS BLOQUEADAS TEMPORALMENTE -->
-  <div class="modal-backdrop" id="modalDescargasBloqueadas" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); z-index:99999; align-items:center; justify-content:center; padding:20px;">
-    <div class="modal-card" style="background:#0f172a; border:1px solid #334155; border-radius:18px; max-width:480px; width:100%; padding:28px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.7); text-align:center; position:relative;">
-      <button type="button" onclick="cerrarModalBloqueo()" style="position:absolute; top:16px; right:16px; background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;" aria-label="Cerrar"><i class="fas fa-xmark"></i></button>
-      <div style="width:62px; height:62px; border-radius:50%; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 16px auto; color:#ef4444; font-size:1.6rem;">
-        <i class="fas fa-lock"></i>
-      </div>
-      <h3 style="color:#ffffff; font-size:1.35rem; font-weight:800; margin-bottom:8px;">Descargas Bloqueadas</h3>
-      <div style="background:rgba(239,68,68,0.1); border-left:3px solid #ef4444; padding:10px 14px; border-radius:8px; text-align:left; margin-bottom:16px; color:#fca5a5; font-size:0.82rem; line-height:1.4;">
-        <i class="fas fa-shield-alt"></i> La descarga gratuita y los instaladores directos han sido temporalmente suspendidos por administración.
-      </div>
-      <p style="color:#94a3b8; font-size:0.86rem; line-height:1.5; margin-bottom:20px; text-align:left;">
-        Para proteger la suite e iniciar tu investigación exegética, debes solicitar tu <strong>Licencia Ministerial</strong> ($10/mes, $50/semestre o $100/año) o activar tu <strong>Prueba Pro de 15 Días</strong> vinculando tu correo oficial.
-      </p>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <button type="button" onclick="cerrarModalBloqueo(); iniciarSolicitudLicencia('prueba_15_dias');" style="background:var(--gold-light); color:#070d19; border:none; padding:12px; border-radius:10px; font-weight:800; font-size:0.92rem; cursor:pointer;">
-          <i class="fas fa-bolt"></i> Solicitar Prueba Pro de 15 Días
-        </button>
-        <button type="button" onclick="cerrarModalBloqueo(); iniciarSolicitudLicencia('mensual');" style="background:rgba(255,255,255,0.08); color:#f8fafc; border:1px solid rgba(255,255,255,0.15); padding:12px; border-radius:10px; font-weight:700; font-size:0.92rem; cursor:pointer;">
-          <i class="fas fa-crown" style="color:var(--gold-light);"></i> Solicitar Licencia Ministerial ($10 / $50 / $100)
-        </button>
-        <button type="button" onclick="cerrarModalBloqueo()" style="background:transparent; color:#64748b; border:none; padding:8px; font-size:0.84rem; cursor:pointer;">
-          Entendido, cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function mostrarDescargasBloqueadas(plataforma) {
-      const modal = document.getElementById('modalDescargasBloqueadas');
-      if (modal) {
-        modal.style.display = 'flex';
-      } else {
-        alert('🔒 Las descargas directas están temporalmente suspendidas por administración. Por favor solicita tu licencia ministerial o vincula tu cuenta.');
-      }
-    }
-
-    function cerrarModalBloqueo() {
-      const modal = document.getElementById('modalDescargasBloqueadas');
-      if (modal) modal.style.display = 'none';
-    }
   </script>
 
 </body>
