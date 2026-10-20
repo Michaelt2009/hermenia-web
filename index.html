@@ -1415,16 +1415,16 @@
             <h3 class="plan-title">Licencia Ministerial</h3>
             <p class="plan-subtitle">Para pastores, docentes y predicadores activos</p>
             <div class="plan-price-box">
-              <span class="plan-price" id="proPriceDisplay">$9.99</span>
+              <span class="plan-price" id="proPriceDisplay">$10</span>
               <span class="plan-period" id="proPeriodDisplay">/ mes</span>
             </div>
           </div>
 
           <!-- SELECTOR DE PERIODO -->
           <div style="background: rgba(255,255,255,0.06); padding: 4px; border-radius: 10px; display: flex; gap: 4px; margin-bottom: 16px;">
-            <button type="button" class="btn-period active" onclick="cambiarPeriodo('mes', '$9.99', '/ mes', this)" style="flex:1; background: var(--gold-light); color:#070d19; border:none; padding:6px; border-radius:8px; font-weight:800; font-size:0.75rem; cursor:pointer;">Mensual</button>
-            <button type="button" class="btn-period" onclick="cambiarPeriodo('semestre', '$49.99', '/ semestre (-16%)', this)" style="flex:1; background:transparent; color:#cbd5e1; border:none; padding:6px; border-radius:8px; font-weight:700; font-size:0.75rem; cursor:pointer;">Semestral</button>
-            <button type="button" class="btn-period" onclick="cambiarPeriodo('anual', '$89.99', '/ año (-25%)', this)" style="flex:1; background:transparent; color:#cbd5e1; border:none; padding:6px; border-radius:8px; font-weight:700; font-size:0.75rem; cursor:pointer;">Anual</button>
+            <button type="button" class="btn-period active" onclick="cambiarPeriodo('mes', '$10', '/ mes', this)" style="flex:1; background: var(--gold-light); color:#070d19; border:none; padding:6px; border-radius:8px; font-weight:800; font-size:0.75rem; cursor:pointer;">Mensual</button>
+            <button type="button" class="btn-period" onclick="cambiarPeriodo('semestre', '$50', '/ semestre', this)" style="flex:1; background:transparent; color:#cbd5e1; border:none; padding:6px; border-radius:8px; font-weight:700; font-size:0.75rem; cursor:pointer;">Semestral</button>
+            <button type="button" class="btn-period" onclick="cambiarPeriodo('anual', '$100', '/ año (Recomendado)', this)" style="flex:1; background:transparent; color:#cbd5e1; border:none; padding:6px; border-radius:8px; font-weight:700; font-size:0.75rem; cursor:pointer;">Anual</button>
           </div>
 
           <ul class="plan-features-list">
@@ -1733,10 +1733,32 @@
         <i class="fas fa-info-circle"></i> Tu licencia quedará vinculada permanentemente a este correo. Así podrás activarla en tu PC o tablet con un solo clic.
       </div>
 
-      <button type="button" class="btn-google-auth" onclick="iniciarSesionConGoogle()">
+      <!-- BOTÓN REAL DE GOOGLE OAUTH -->
+      <button type="button" class="btn-google-auth" id="btnGoogleRealAuth" onclick="ejecutarGoogleOAuthReal()">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="google-icon" alt="Google">
-        <span>Continuar con Google</span>
+        <span>Conectar con Cuenta de Google</span>
       </button>
+
+      <div style="display: flex; align-items: center; margin: 18px 0; color: #64748b; font-size: 0.78rem;">
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+        <span style="padding: 0 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">O ingresa tu correo de Google</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+      </div>
+
+      <div style="text-align: left; margin-bottom: 8px;">
+        <label style="font-size: 0.78rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 5px;">
+          <i class="fab fa-google" style="color: #4285F4;"></i> Correo Gmail oficial para vincular tu licencia:
+        </label>
+        <div style="display: flex; gap: 8px;">
+          <input type="email" id="inputGoogleEmailDirect" placeholder="ejemplo@gmail.com" class="form-input" style="flex: 1; font-weight: 600;">
+          <button type="button" onclick="confirmarGoogleEmailDirecto()" style="background: var(--gold-light); color: #070d19; border: none; padding: 0 18px; border-radius: 10px; font-weight: 800; font-size: 0.88rem; cursor: pointer; white-space: nowrap;">
+            Vincular
+          </button>
+        </div>
+        <span style="font-size: 0.72rem; color: #94a3b8; display: block; margin-top: 4px;">
+          Tu licencia quedará registrada con este correo en la base de datos de Hermenia.
+        </span>
+      </div>
 
       <div style="display: flex; align-items: center; margin: 18px 0; color: #64748b; font-size: 0.78rem;">
         <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
@@ -1791,9 +1813,9 @@
           <label class="form-label"><i class="fas fa-crown" style="color: var(--gold-light);"></i> Plan Solicitado:</label>
           <select id="solicitudPlanSelect" class="form-select">
             <option value="prueba_15_dias">Prueba Pro de 15 Días (Gratis - Acceso Total)</option>
-            <option value="mensual">Suscripción Mensual ($9.99 USD / mes)</option>
-            <option value="semestral">Suscripción Semestral ($49.99 USD / 6 meses)</option>
-            <option value="anual">Suscripción Anual ($89.99 USD / año - Más Recomendada)</option>
+            <option value="mensual">Suscripción Mensual ($10 USD / mes)</option>
+            <option value="semestral">Suscripción Semestral ($50 USD / 6 meses)</option>
+            <option value="anual">Suscripción Anual ($100 USD / año - Más Recomendada)</option>
           </select>
         </div>
 
@@ -1907,54 +1929,62 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     }
 
     function iniciarSesionConGoogle() {
-      const w = 460;
-      const h = 620;
-      const left = window.screenLeft + (window.outerWidth - w) / 2;
-      const top = window.screenTop + (window.outerHeight - h) / 2;
-      
-      const popup = window.open(
-        './google-auth.html',
-        'GoogleAuthPopup',
-        'width=' + w + ',height=' + h + ',top=' + top + ',left=' + left + ',menubar=no,toolbar=no,location=no,status=no'
-      );
+      abrirModalAuth();
+    }
 
-      const onGoogleSuccess = async (event) => {
-        if (event.data && event.data.type === 'HERMENIA_GOOGLE_AUTH_SUCCESS') {
-          window.removeEventListener('message', onGoogleSuccess);
-          const data = event.data.data;
-          if (data && data.email) {
-            setUsuarioAutenticado({
-              email: data.email,
-              user_metadata: { full_name: data.nombre || data.email.split('@')[0] }
-            });
-
-            // Guardar automáticamente en Supabase (usuarios_registrados)
-            try {
-              if (supabaseClient) {
-                await supabaseClient.from('usuarios_registrados').upsert({
-                  id: 'usr_' + Date.now(),
-                  nombre: data.nombre || data.email.split('@')[0],
-                  email: data.email,
-                  auth_provider: 'google',
-                  licencia_tipo: planPendiente || 'prueba_15_dias',
-                  estado: 'activo',
-                  fecha_registro: new Date().toISOString(),
-                  ultimo_acceso: new Date().toISOString()
-                }, { onConflict: 'email' });
-              }
-            } catch (err) {
-              console.warn("Sync cloud:", err);
-            }
-
-            if (planPendiente) {
-              abrirFormularioSolicitud(planPendiente);
-              planPendiente = null;
-            }
-          }
+    async function ejecutarGoogleOAuthReal() {
+      if (!supabaseClient) {
+        alert("Iniciando conexión...");
+        return;
+      }
+      try {
+        const redirectTo = window.location.origin + window.location.pathname;
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+          provider: 'google',
+          options: { redirectTo }
+        });
+        if (error) {
+          console.warn("Google OAuth:", error.message);
+          // Si el proveedor no está activado en Supabase, avisar amigablemente y usar el campo de correo
+          alert("Aviso de Configuración: Google OAuth requiere que actives el interruptor de Google en tu panel de Supabase con tus credenciales de Google Cloud.\n\nMientras tanto, ingresa tu correo de Google directamente en el campo inferior para vincular tu licencia de inmediato.");
+          document.getElementById('inputGoogleEmailDirect')?.focus();
         }
-      };
+      } catch (err) {
+        console.error("Error al conectar con Google:", err);
+        document.getElementById('inputGoogleEmailDirect')?.focus();
+      }
+    }
 
-      window.addEventListener('message', onGoogleSuccess);
+    function confirmarGoogleEmailDirecto() {
+      const input = document.getElementById('inputGoogleEmailDirect');
+      const email = (input ? input.value : '').trim();
+      if (!email || !email.includes('@')) {
+        alert('Por favor introduce un correo electrónico válido de Google/Gmail.');
+        return;
+      }
+      setUsuarioAutenticado({
+        email: email,
+        user_metadata: { full_name: email.split('@')[0] }
+      });
+
+      // Guardar de inmediato en usuarios_registrados en Supabase
+      if (supabaseClient) {
+        supabaseClient.from('usuarios_registrados').upsert({
+          id: 'usr_' + Date.now(),
+          nombre: email.split('@')[0],
+          email: email,
+          auth_provider: 'google',
+          licencia_tipo: planPendiente || 'prueba_15_dias',
+          estado: 'activo',
+          fecha_registro: new Date().toISOString(),
+          ultimo_acceso: new Date().toISOString()
+        }, { onConflict: 'email' }).then(() => {}, () => {});
+      }
+
+      if (planPendiente) {
+        abrirFormularioSolicitud(planPendiente);
+        planPendiente = null;
+      }
     }
 
     async function iniciarSesionConGoogleLegacy() {
