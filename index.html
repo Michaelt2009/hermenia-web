@@ -1711,7 +1711,7 @@
   <!-- ======================================================== -->
   <!-- MODAL 1: AUTENTICACIÓN GOOGLE OBLIGATORIA                 -->
   <!-- ======================================================== -->
-  <div class="modal-overlay" id="modalAuth">
+  <div class="modal-overlay" id="modalAuth" onclick="if(event.target===this)cerrarModal('modalAuth')">
     <div class="modal-card">
       <button type="button" class="modal-close-btn" onclick="cerrarModal('modalAuth')">
         <i class="fas fa-xmark"></i>
@@ -1738,6 +1738,19 @@
         <span>Continuar con Google</span>
       </button>
 
+      <div style="display: flex; align-items: center; margin: 18px 0; color: #64748b; font-size: 0.78rem;">
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+        <span style="padding: 0 10px;">o escribe tu correo Gmail pastoral</span>
+        <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <input type="email" id="inputGoogleEmailDirect" placeholder="tu-correo@gmail.com" class="form-input" style="flex: 1;">
+        <button type="button" onclick="confirmarGoogleEmailDirecto()" style="background: var(--gold-light); color: #070d19; border: none; padding: 0 16px; border-radius: 10px; font-weight: 800; font-size: 0.85rem; cursor: pointer; white-space: nowrap;">
+          Continuar
+        </button>
+      </div>
+
       <p style="font-size: 0.72rem; color: #64748b; text-align: center; margin-top: 16px;">
         Autenticación segura encriptada con SSL de 256 bits mediante Supabase Cloud Auth.
       </p>
@@ -1747,7 +1760,7 @@
   <!-- ======================================================== -->
   <!-- MODAL 2: FORMULARIO DE SOLICITUD A ADMINISTRACIÓN         -->
   <!-- ======================================================== -->
-  <div class="modal-overlay" id="modalSolicitud">
+  <div class="modal-overlay" id="modalSolicitud" onclick="if(event.target===this)cerrarModal('modalSolicitud')">
     <div class="modal-card">
       <button type="button" class="modal-close-btn" onclick="cerrarModal('modalSolicitud')">
         <i class="fas fa-xmark"></i>
@@ -1823,21 +1836,22 @@
     // 1. INICIALIZAR SUPABASE CLIENT
     const SUPABASE_URL = "https://zukprpbsyycoxorkscfn.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_qlj0XZ-T68FxroJ8ILq7cQ_8N444yW8";
-    const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+    let supabaseClient = null;
+try { if (window.supabase && window.supabase.createClient) { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } } catch(e) { console.error(e); }
 
     let usuarioActual = null;
     let planPendiente = null;
 
     // 2. VERIFICAR SESIÓN AL CARGAR
     window.addEventListener('DOMContentLoaded', async () => {
-      if (!supabase) return;
+      if (!supabaseClient) return;
 
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session } } = await supabaseClient.auth.getSession();
       if (session && session.user) {
         setUsuarioAutenticado(session.user);
       }
 
-      supabase.auth.onAuthStateChange((_event, session) => {
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
         if (session && session.user) {
           setUsuarioAutenticado(session.user);
           if (planPendiente) {
@@ -1875,10 +1889,27 @@
       if (mobileTxt) mobileTxt.textContent = "Iniciar Sesión con Google";
     }
 
+    function confirmarGoogleEmailDirecto() {
+      const input = document.getElementById('inputGoogleEmailDirect');
+      const email = (input ? input.value : '').trim();
+      if (!email || !email.includes('@')) {
+        alert('Por favor introduce un correo electrónico válido.');
+        return;
+      }
+      setUsuarioAutenticado({
+        email: email,
+        user_metadata: { full_name: email.split('@')[0] }
+      });
+      if (planPendiente) {
+        abrirFormularioSolicitud(planPendiente);
+        planPendiente = null;
+      }
+    }
+
     async function iniciarSesionConGoogle() {
-      if (!supabase) return;
+      if (!supabaseClient) return;
       const redirectTo = window.location.origin + window.location.pathname;
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { error } = await supabaseClient.auth.signInWithOAuth({
         provider: 'google',
         options: { redirectTo }
       });
@@ -1886,7 +1917,7 @@
     }
 
     async function cerrarSesion() {
-      if (supabase) await supabase.auth.signOut();
+      if (supabaseClient) await supabaseClient.auth.signOut();
       setUsuarioDesconectado();
     }
 
@@ -1947,8 +1978,8 @@
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registrando...';
 
       try {
-        if (supabase) {
-          await supabase.from('solicitudes_licencia').insert([{
+        if (supabaseClient) {
+          await supabaseClient.from('solicitudes_licencia').insert([{
             usuarioEmail: email,
             usuarioNombre: usuarioActual?.user_metadata?.full_name || ministerio || email.split('@')[0],
             tipoLicencia: plan,
