@@ -1127,7 +1127,7 @@
 
         <!-- AUTH BOX CON GOOGLE -->
         <div class="auth-nav-box">
-          <button type="button" class="btn-nav-login" id="btnNavLogin" onclick="abrirModalAuth()">
+          <button type="button" class="btn-nav-login" id="btnNavLogin" onclick="iniciarSesionConGoogle()">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="google-icon" alt="Google">
             <span id="navLoginTxt">Iniciar Sesión</span>
           </button>
@@ -1172,7 +1172,7 @@
       <a href="#requisitos" class="mobile-nav-link" onclick="closeMobileMenu()"><i class="fas fa-microchip"></i> Requisitos</a>
       <a href="#legal" class="mobile-nav-link" onclick="closeMobileMenu()"><i class="fas fa-balance-scale"></i> Legal</a>
       
-      <button type="button" class="mobile-nav-link" onclick="abrirModalAuth(); closeMobileMenu();" style="background: rgba(255,255,255,0.08); border:none; width:100%; cursor:pointer;">
+      <button type="button" class="mobile-nav-link" onclick="iniciarSesionConGoogle(); closeMobileMenu();" style="background: rgba(255,255,255,0.08); border:none; width:100%; cursor:pointer;">
         <i class="fab fa-google" style="color: #4285F4;"></i> <span id="mobileLoginTxt">Iniciar Sesión con Google</span>
       </button>
 
@@ -1906,7 +1906,58 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       }
     }
 
-    async function iniciarSesionConGoogle() {
+    function iniciarSesionConGoogle() {
+      const w = 460;
+      const h = 620;
+      const left = window.screenLeft + (window.outerWidth - w) / 2;
+      const top = window.screenTop + (window.outerHeight - h) / 2;
+      
+      const popup = window.open(
+        './google-auth.html',
+        'GoogleAuthPopup',
+        'width=' + w + ',height=' + h + ',top=' + top + ',left=' + left + ',menubar=no,toolbar=no,location=no,status=no'
+      );
+
+      const onGoogleSuccess = async (event) => {
+        if (event.data && event.data.type === 'HERMENIA_GOOGLE_AUTH_SUCCESS') {
+          window.removeEventListener('message', onGoogleSuccess);
+          const data = event.data.data;
+          if (data && data.email) {
+            setUsuarioAutenticado({
+              email: data.email,
+              user_metadata: { full_name: data.nombre || data.email.split('@')[0] }
+            });
+
+            // Guardar automáticamente en Supabase (usuarios_registrados)
+            try {
+              if (supabaseClient) {
+                await supabaseClient.from('usuarios_registrados').upsert({
+                  id: 'usr_' + Date.now(),
+                  nombre: data.nombre || data.email.split('@')[0],
+                  email: data.email,
+                  auth_provider: 'google',
+                  licencia_tipo: planPendiente || 'prueba_15_dias',
+                  estado: 'activo',
+                  fecha_registro: new Date().toISOString(),
+                  ultimo_acceso: new Date().toISOString()
+                }, { onConflict: 'email' });
+              }
+            } catch (err) {
+              console.warn("Sync cloud:", err);
+            }
+
+            if (planPendiente) {
+              abrirFormularioSolicitud(planPendiente);
+              planPendiente = null;
+            }
+          }
+        }
+      };
+
+      window.addEventListener('message', onGoogleSuccess);
+    }
+
+    async function iniciarSesionConGoogleLegacy() {
       if (!supabaseClient) return;
       const redirectTo = window.location.origin + window.location.pathname;
       const { error } = await supabaseClient.auth.signInWithOAuth({
@@ -1942,7 +1993,7 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     function iniciarSolicitudLicencia(tipoPlan) {
       if (!usuarioActual) {
         planPendiente = tipoPlan;
-        abrirModalAuth();
+        iniciarSesionConGoogle();
       } else {
         abrirFormularioSolicitud(tipoPlan);
       }
