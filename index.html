@@ -641,24 +641,37 @@
       line-height: 1.45;
     }
 
-    /* SECCIÓN DE PLANES Y LICENCIAS */
+    /* SECCIÓN DE PLANES Y LICENCIAS - 5 CONTENEDORES PERFECTAMENTE CUADRADOS */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 45px;
       align-items: stretch;
+    }
+    @media screen and (max-width: 1400px) {
+      .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 16px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
     }
     .pricing-card {
       background: var(--bg-card);
       border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 20px;
-      padding: 34px 26px;
+      padding: 26px 16px 20px 16px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       position: relative;
       transition: all 0.3s ease;
+      height: 100%;
+      box-sizing: border-box;
     }
     .pricing-card:hover {
       transform: translateY(-4px);
@@ -667,13 +680,13 @@
     }
     .pricing-card.featured-plan {
       border: 2px solid var(--gold-light);
-      background: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.92) 100%);
-      box-shadow: 0 12px 40px -10px rgba(245, 158, 11, 0.35);
-      transform: scale(1.03);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%);
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.28);
+      transform: none !important; /* CERO SCALE PARA ALINEACION PERFECTA */
       z-index: 2;
     }
     .pricing-card.featured-plan:hover {
-      transform: scale(1.05) translateY(-4px);
+      transform: translateY(-4px) !important;
     }
     .pricing-ribbon {
       position: absolute;
@@ -682,88 +695,90 @@
       transform: translateX(-50%);
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: #070d19;
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       font-weight: 900;
-      padding: 4px 14px;
+      padding: 4px 10px;
       border-radius: 999px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
       white-space: nowrap;
     }
     .plan-header {
       text-align: center;
-      margin-bottom: 22px;
+      min-height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 12px;
     }
     .plan-title {
-      font-size: 1.30rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .plan-subtitle {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
+      line-height: 1.3;
     }
     .plan-price-box {
-      margin: 18px 0;
+      margin: 12px 0 0 0;
       display: flex;
       align-items: baseline;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
     .plan-price {
-      font-size: 2.6rem;
+      font-size: 2.3rem;
       font-weight: 900;
       color: var(--gold-light);
       font-family: var(--font-title);
     }
     .plan-period {
-      font-size: 0.84rem;
+      font-size: 0.78rem;
       color: #94a3b8;
     }
     .plan-features-list {
       list-style: none;
-      margin: 20px 0 28px 0;
+      margin: 14px 0 20px 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      flex: 1;
+      gap: 9px;
+      flex: 1; /* EMPUJA EL BOTON AL FONDO DE FORMA EXACTA */
     }
     .plan-feature-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      font-size: 0.86rem;
+      gap: 8px;
+      font-size: 0.78rem;
       color: #cbd5e1;
-      line-height: 1.45;
+      line-height: 1.35;
     }
-    .plan-feature-item i.check { color: #22c55e; margin-top: 3px; }
-    .plan-feature-item i.cross { color: #64748b; margin-top: 3px; }
+    .plan-feature-item i.check { color: #22c55e; margin-top: 2px; }
+    .plan-feature-item i.cross { color: #64748b; margin-top: 2px; }
 
     .btn-plan {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 14px 20px;
-      border-radius: 12px;
+      gap: 7px;
+      height: 46px;
+      min-height: 46px;
+      padding: 8px 12px;
+      border-radius: 10px;
       font-weight: 800;
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
       border: none;
       width: 100%;
-    }
-    .btn-plan-free {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .btn-plan-free:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: #ffffff;
+      margin-top: auto; /* BASELINE ALINEADO EN TODOS */
+      box-sizing: border-box;
+      white-space: nowrap;
     }
     .btn-plan-trial {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
@@ -1680,208 +1695,223 @@
       </p>
     </div>
 
-    <!-- CUADRÍCULA DE PRECIOS EN 4 CONTENEDORES CLAROS -->
+    <!-- CUADRÍCULA DE PRECIOS EN 5 CONTENEDORES PERFECTAMENTE ALINEADOS -->
     <div class="pricing-grid">
       
-      <!-- CONTENEDOR 1: PRUEBA PRO 15 DÍAS -->
+      <!-- 1. PRUEBA PRO 15 DÍAS -->
       <div class="pricing-card">
-        <div>
-          <div class="plan-header">
-            <h3 class="plan-title" style="color: #38bdf8;">Prueba Pro 15 Días</h3>
-            <p class="plan-subtitle">Acceso Total e Ilimitado Sin Restricciones</p>
-            <div class="plan-price-box">
-              <span class="plan-price" style="color: #38bdf8;">$0</span>
-              <span class="plan-period">/ 15 días completos</span>
-            </div>
+        <div class="plan-header">
+          <h3 class="plan-title" style="color: #38bdf8;">Prueba Pro 15 Días</h3>
+          <p class="plan-subtitle">Acceso total para conocer Hermenia</p>
+          <div class="plan-price-box">
+            <span class="plan-price" style="color: #38bdf8;">$0</span>
+            <span class="plan-period">/ 15 días</span>
           </div>
-
-          <ul class="plan-features-list">
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span><strong>Acceso 100% ilimitado</strong> a toda la suite</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Interlineal hebreo/griego lematizado con Strong</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>IA teológica con Gemini 2.0 Flash sin límites</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Taller homilético completo (6 fases exegéticas)</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Exportación a Microsoft Word (.doc) y PDF</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Cartografía bíblica interactiva y cronología</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-shield-alt" style="color: #38bdf8; margin-top:3px;"></i>
-              <span><strong>Sin tarjeta de crédito requerida</strong></span>
-            </li>
-          </ul>
         </div>
+
+        <ul class="plan-features-list">
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Acceso 100% total sin restricciones</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Interlineal morfológico griego/hebreo</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Asistente de IA con Gemini sin límites</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Taller homilético de 6 fases completas</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Exportación formal a Word (.doc) y PDF</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-shield-alt" style="color: #38bdf8; margin-top:2px;"></i>
+            <span><strong>Sin tarjeta de crédito requerida</strong></span>
+          </li>
+        </ul>
 
         <button type="button" class="btn-plan btn-plan-trial" onclick="iniciarSolicitudLicencia('prueba_15_dias')">
           <i class="fas fa-bolt"></i> Iniciar Prueba 15 Días
         </button>
       </div>
 
-      <!-- CONTENEDOR 2: LICENCIA SEMESTRAL -->
+      <!-- 2. LICENCIA MENSUAL -->
       <div class="pricing-card">
-        <div>
-          <div class="plan-header">
-            <h3 class="plan-title">Licencia Semestral</h3>
-            <p class="plan-subtitle">Para semestres académicos y predicación activa</p>
-            <div class="plan-price-box">
-              <span class="plan-price">$50</span>
-              <span class="plan-period">/ 6 meses ($8.33 / mes)</span>
-            </div>
+        <div class="plan-header">
+          <h3 class="plan-title">Licencia Mensual</h3>
+          <p class="plan-subtitle">Flexibilidad mes a mes sin contratos</p>
+          <div class="plan-price-box">
+            <span class="plan-price">$10</span>
+            <span class="plan-period">/ mes</span>
           </div>
-
-          <ul class="plan-features-list">
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Licencia ministerial completa por 6 meses</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Interlineal y aparato textual crítico desbloqueado</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>IA ilimitada con Exégesis Cloud</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Exportador formal a Word (.doc) y PDF</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Actualizaciones continuas automáticas</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Compatible con Windows, Mac, iPad y Android</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Soporte pastoral y técnico directo</span>
-            </li>
-          </ul>
         </div>
+
+        <ul class="plan-features-list">
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>30 días de acceso ministerial activo</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Todas las herramientas exegéticas listas</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>IA teológica y exégesis en la nube</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Exportador a Word (.doc) y PDF formal</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Renovación mensual flexible</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Soporte técnico directo y pastoral</span>
+          </li>
+        </ul>
+
+        <button type="button" class="btn-plan btn-plan-pro" onclick="iniciarSolicitudLicencia('mensual')">
+          <i class="fas fa-calendar-day"></i> Elegir Plan Mensual
+        </button>
+      </div>
+
+      <!-- 3. LICENCIA SEMESTRAL -->
+      <div class="pricing-card">
+        <div class="plan-header">
+          <h3 class="plan-title">Licencia Semestral</h3>
+          <p class="plan-subtitle">Semestres e institutos bíblicos</p>
+          <div class="plan-price-box">
+            <span class="plan-price">$50</span>
+            <span class="plan-period">/ 6 meses ($8.33/mes)</span>
+          </div>
+        </div>
+
+        <ul class="plan-features-list">
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>6 meses de acceso ministerial continuo</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Interlineal y aparato crítico desbloqueado</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>IA ilimitada con Exégesis Cloud</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Exportador formal a Word (.doc) y PDF</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Actualizaciones automáticas continuas</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Soporte técnico y pastoral prioritario</span>
+          </li>
+        </ul>
 
         <button type="button" class="btn-plan btn-plan-pro" onclick="iniciarSolicitudLicencia('semestral')">
           <i class="fas fa-calendar-check"></i> Elegir Plan Semestral
         </button>
       </div>
 
-      <!-- CONTENEDOR 3: LICENCIA PRO ANUAL (DESTACADO / MÁS POPULAR) -->
+      <!-- 4. LICENCIA PRO ANUAL (DESTACADO / MÁS POPULAR) -->
       <div class="pricing-card featured-plan">
-        <div class="pricing-ribbon">⭐ MÁS ELEGIDO POR PASTORES • AHORRA 17%</div>
-        <div>
-          <div class="plan-header">
-            <h3 class="plan-title" style="color: var(--gold-light);">Licencia Pro Anual</h3>
-            <p class="plan-subtitle">Estudio y preparación de sermones todo el año</p>
-            <div class="plan-price-box">
-              <span class="plan-price">$100</span>
-              <span class="plan-period">/ año ($8.30 / mes)</span>
-            </div>
+        <div class="pricing-ribbon">⭐ MÁS ELEGIDO • AHORRA 17%</div>
+        <div class="plan-header">
+          <h3 class="plan-title" style="color: var(--gold-light);">Licencia Pro Anual</h3>
+          <p class="plan-subtitle">La elección predilecta de pastores</p>
+          <div class="plan-price-box">
+            <span class="plan-price">$100</span>
+            <span class="plan-period">/ año ($8.30/mes)</span>
           </div>
-
-          <ul class="plan-features-list">
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span><strong>365 días de acceso ministerial sin interrupciones</strong></span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>IA ilimitada con Gemini 2.0 Flash y Exégesis Cloud</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Homilética avanzada con 4 cuadrantes y textos de respaldo</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Exportación a Microsoft Word formal y PDF lista</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Vinculación permanente y segura a tu Google</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Desvinculación de hardware si cambias de PC</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Todas las nuevas versiones automáticas incluidas</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check"></i>
-              <span>Soporte prioritario directo con el equipo</span>
-            </li>
-          </ul>
         </div>
+
+        <ul class="plan-features-list">
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span><strong>365 días de estudio ministerial completo</strong></span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>IA ilimitada con Gemini y Exégesis Cloud</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Homilética con 4 cuadrantes y citas bíblicas</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Exportación formal a Word (.doc) y PDF</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Desvinculación si cambias de PC</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check"></i>
+            <span>Todas las nuevas versiones incluidas</span>
+          </li>
+        </ul>
 
         <button type="button" class="btn-plan btn-plan-trial" onclick="iniciarSolicitudLicencia('anual')">
           <i class="fas fa-crown"></i> Elegir Plan Anual
         </button>
       </div>
 
-      <!-- CONTENEDOR 4: LICENCIA VITALICIA (PAGO ÚNICO DEFINITIVO) -->
+      <!-- 5. LICENCIA VITALICIA (PAGO ÚNICO DEFINITIVO) -->
       <div class="pricing-card" style="border: 1px solid rgba(168, 85, 247, 0.45); background: linear-gradient(180deg, rgba(168, 85, 247, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);">
         <div class="pricing-ribbon" style="background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); color: #ffffff;">👑 INVERSIÓN DEFINITIVA</div>
-        <div>
-          <div class="plan-header">
-            <h3 class="plan-title" style="color: #c084fc;">Licencia Vitalicia</h3>
-            <p class="plan-subtitle">Acceso perpetuo para toda tu vida ministerial</p>
-            <div class="plan-price-box">
-              <span class="plan-price" style="color: #c084fc;">$250</span>
-              <span class="plan-period">/ pago único de por vida</span>
-            </div>
+        <div class="plan-header">
+          <h3 class="plan-title" style="color: #c084fc;">Licencia Vitalicia</h3>
+          <p class="plan-subtitle">Acceso perpetuo para toda tu vida</p>
+          <div class="plan-price-box">
+            <span class="plan-price" style="color: #c084fc;">$250</span>
+            <span class="plan-period">/ pago único</span>
           </div>
-
-          <ul class="plan-features-list">
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span><strong>Acceso vitalicio garantizado sin renovaciones jamás</strong></span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>Cero pagos mensuales o anuales futuros</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>IA teológica y exégesis habilitada de forma permanente</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>Todas las versiones futuras de Hermenia incluidas gratis</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>Licencia transferible entre tus equipos personales</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>Exportación ilimitada a Word y PDF para siempre</span>
-            </li>
-            <li class="plan-feature-item">
-              <i class="fas fa-check check" style="color: #c084fc;"></i>
-              <span>Canal de atención directa y prioritario VIP</span>
-            </li>
-          </ul>
         </div>
 
+        <ul class="plan-features-list">
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span><strong>Acceso vitalicio garantizado para siempre</strong></span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span>Cero pagos mensuales o anuales futuros</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span>Motor exegético e IA permanente</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span>Todas las versiones futuras incluidas gratis</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span>Licencia transferible entre tus equipos</span>
+          </li>
+          <li class="plan-feature-item">
+            <i class="fas fa-check check" style="color: #c084fc;"></i>
+            <span>Canal VIP de atención directa con Hermenia</span>
+          </li>
+        </ul>
+
         <button type="button" class="btn-plan" onclick="iniciarSolicitudLicencia('vitalicia')" style="background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); color: #ffffff; box-shadow: 0 4px 18px rgba(168, 85, 247, 0.35);">
-          <i class="fas fa-gem"></i> Obtener Licencia Vitalicia
+          <i class="fas fa-gem"></i> Obtener Vitalicia
         </button>
       </div>
 
@@ -1976,6 +2006,7 @@
             <label class="form-label"><i class="fas fa-crown" style="color: var(--gold-light);"></i> Plan o Tipo de Licencia Deseada:</label>
             <select id="solicitudAdminPlan" class="form-select" required>
               <option value="prueba_15_dias">Prueba Pro de 15 Días (Gratis - Acceso Total)</option>
+              <option value="mensual">Licencia Mensual ($10 USD / mes)</option>
               <option value="semestral">Licencia Semestral ($50 USD / 6 meses)</option>
               <option value="anual" selected>Licencia Ministerial Anual ($100 USD / año - Más Recomendada)</option>
               <option value="vitalicia">Licencia Vitalicia Definitiva ($250 USD / Pago Único de por Vida)</option>
@@ -2658,7 +2689,7 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       const msgWhatsApp = encodeURIComponent(
         "¡Hola Administrador de Hermenia!\n\nAcabo de solicitar la licencia *" + plan.toUpperCase() + "* en la web oficial.\n\n👤 Mi cuenta de Google verificada es: " + email + "\n🏛️ Ministerio: " + (ministerio || 'Particular') + "\n📱 Teléfono: " + (telefono || 'No indicado') + "\n\nPor favor activen mi cuenta. ¡Muchas gracias!"
       );
-      document.getElementById('btnWhatsAppDirecto').href = "https://wa.me/?text=" + msgWhatsApp;
+      document.getElementById('btnWhatsAppDirecto').href = 'https://wa.me/573161492880?text=' + msgWhatsApp;
 
       document.getElementById('formSolicitudLicencia').style.display = 'none';
       document.getElementById('solicitudExitoBox').style.display = 'block';
@@ -2802,7 +2833,7 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       const msgWhatsApp = encodeURIComponent(
         "¡Hola Administración de Hermenia!\n\nAcabo de radicar mi *SOLICITUD MINISTERIAL* en la web oficial.\n\n👤 Nombre: " + nombre + "\n📧 Cuenta Google: " + email + "\n🏛️ Rol/Ministerio: " + rol + " - " + institucion + "\n📍 Ubicación: " + ubicacion + "\n📱 WhatsApp: " + whatsapp + "\n🔑 Plan Solicitado: *" + plan.toUpperCase() + "*\n📝 Motivos: " + motivos + "\n\nQuedo atento a la activación de mi cuenta. ¡Bendiciones!"
       );
-      document.getElementById('btnWhatsAppAdminDirecto').href = "https://wa.me/?text=" + msgWhatsApp;
+      document.getElementById('btnWhatsAppAdminDirecto').href = 'https://wa.me/573161492880?text=' + msgWhatsApp;
 
       document.getElementById('formSolicitudAdminDirecta').style.display = 'none';
       document.getElementById('solicitudAdminDirectaExito').style.display = 'block';
