@@ -2544,31 +2544,53 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     }
 
     function iniciarSesionConGoogle() {
-      abrirModalAuth();
+      ejecutarGoogleOAuthReal();
     }
+    window.iniciarSesionConGoogle = iniciarSesionConGoogle;
 
     async function ejecutarGoogleOAuthReal() {
       if (!supabaseClient) {
-        alert("Iniciando conexión...");
+        alert("Iniciando conexión con el servidor...");
         return;
       }
       try {
         const redirectTo = window.location.origin + window.location.pathname;
         const { data, error } = await supabaseClient.auth.signInWithOAuth({
           provider: 'google',
-          options: { redirectTo }
+          options: {
+            redirectTo,
+            queryParams: {
+              prompt: 'select_account',
+              access_type: 'offline'
+            }
+          }
         });
         if (error) {
-          console.warn("Google OAuth:", error.message);
-          // Si el proveedor no está activado en Supabase, avisar amigablemente y usar el campo de correo
-          alert("Aviso de Configuración: Google OAuth requiere que actives el interruptor de Google en tu panel de Supabase con tus credenciales de Google Cloud.\n\nMientras tanto, ingresa tu correo de Google directamente en el campo inferior para vincular tu licencia de inmediato.");
-          document.getElementById('inputGoogleEmailDirect')?.focus();
+          console.warn("Google OAuth signInWithOAuth error:", error.message);
+          const targetRedirect = encodeURIComponent(redirectTo);
+          window.location.href = `https://zukprpbsyycoxorkscfn.supabase.co/auth/v1/authorize?provider=google&redirect_to=${targetRedirect}&prompt=select_account`;
         }
       } catch (err) {
         console.error("Error al conectar con Google:", err);
-        document.getElementById('inputGoogleEmailDirect')?.focus();
+        const targetRedirect = encodeURIComponent(window.location.origin + window.location.pathname);
+        window.location.href = `https://zukprpbsyycoxorkscfn.supabase.co/auth/v1/authorize?provider=google&redirect_to=${targetRedirect}&prompt=select_account`;
       }
     }
+    window.ejecutarGoogleOAuthReal = ejecutarGoogleOAuthReal;
+
+    async function cambiarCuentaGoogle() {
+      try {
+        if (supabaseClient) {
+          await supabaseClient.auth.signOut();
+        }
+      } catch (e) {
+        console.warn("SignOut:", e);
+      }
+      setUsuarioDesconectado();
+      const targetRedirect = encodeURIComponent(window.location.origin + window.location.pathname);
+      window.location.href = `https://zukprpbsyycoxorkscfn.supabase.co/auth/v1/authorize?provider=google&redirect_to=${targetRedirect}&prompt=select_account`;
+    }
+    window.cambiarCuentaGoogle = cambiarCuentaGoogle;
 
     function confirmarGoogleEmailDirecto() {
       const input = document.getElementById('inputGoogleEmailDirect');
@@ -2582,7 +2604,6 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
         user_metadata: { full_name: email.split('@')[0] }
       });
 
-      // Guardar de inmediato en usuarios_registrados en Supabase
       if (supabaseClient) {
         supabaseClient.from('usuarios_registrados').upsert({
           id: 'usr_' + Date.now(),
@@ -2602,20 +2623,13 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       }
     }
 
-    async function iniciarSesionConGoogleLegacy() {
-      if (!supabaseClient) return;
-      const redirectTo = window.location.origin + window.location.pathname;
-      const { error } = await supabaseClient.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo }
-      });
-      if (error) alert("Error al conectar con Google: " + error.message);
-    }
-
     async function cerrarSesion() {
-      if (supabaseClient) await supabaseClient.auth.signOut();
+      if (supabaseClient) {
+        try { await supabaseClient.auth.signOut(); } catch (e) {}
+      }
       setUsuarioDesconectado();
     }
+    window.cerrarSesion = cerrarSesion;
 
     // 3. CONTROL DE PLANES Y PRECIOS
     function cambiarPeriodo(periodo, precio, label, btn) {

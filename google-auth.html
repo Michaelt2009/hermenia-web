@@ -179,7 +179,7 @@
       } else {
         // Redirigir directamente al endpoint oficial de OAuth de Google
         const targetRedirect = encodeURIComponent(REDIRECT_URL.startsWith("http") ? REDIRECT_URL : "https://hermenia-web-9vg5.vercel.app/google-auth.html");
-        const oauthUrl = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=&prompt=select_account${targetRedirect}`;
+        const oauthUrl = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${targetRedirect}&prompt=select_account`;
         window.location.href = oauthUrl;
       }
     }
