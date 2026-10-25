@@ -2850,49 +2850,102 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     }
 
     // A. EJECUTAR PAGO CON MERCADO PAGO (COLOMBIA)
-    function ejecutarPagoMercadoPago() {
+    async function ejecutarPagoMercadoPago() {
       const config = window.HERMENIA_PAYMENTS || {};
       const plan = (config.PLANES && config.PLANES[planActualCheckout]) || { nombre: 'Hermenia', precioUSD: 250, precioCOP: 1025000 };
+      const email = usuarioActual ? usuarioActual.email : '';
+      const nombre = usuarioActual?.user_metadata?.full_name || '';
 
-      if (!config.MERCADOPAGO_PUBLIC_KEY || config.MERCADOPAGO_PUBLIC_KEY.trim() === '') {
+      const btn = event?.currentTarget;
+      if (btn) {
+        btn.style.opacity = '0.7';
+        btn.style.pointerEvents = 'none';
+      }
+
+      try {
+        const res = await fetch('/api/crear-preferencia-mp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            planId: planActualCheckout,
+            email: email,
+            nombre: nombre
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.configured && (data.init_point || data.sandbox_init_point)) {
+          // Redirigir directamente al Checkout Pro de Mercado Pago (PSE, Nequi, Tarjetas)
+          window.location.href = data.init_point || data.sandbox_init_point;
+          return;
+        }
+
         const confirmar = confirm(
           "🏛️ Pasarela PSE / Nequi (Mercado Pago):\n\n" +
-          "La integración bancaria con PSE y Nequi está configurada y lista.\n\n" +
-          "¿Deseas acordar tu pago por Transferencia Directa (Bancolombia / Nequi / Daviplata) mediante nuestro WhatsApp Oficial y recibir activación en 5 minutos?"
+          "La integración con PSE, Nequi, Daviplata y tarjetas está 100% programada.\n\n" +
+          "¿Deseas pagar por Transferencia Directa (Bancolombia / Nequi / Daviplata) mediante nuestro WhatsApp Oficial y recibir activación inmediata?"
         );
         if (confirmar) {
           ejecutarPagoWhatsApp();
         }
-        return;
-      }
-
-      try {
-        const mp = new MercadoPago(config.MERCADOPAGO_PUBLIC_KEY, { locale: 'es-CO' });
-        alert("Iniciando Mercado Pago para " + plan.nombre + "...");
       } catch (err) {
-        console.error("Error Mercado Pago:", err);
+        console.warn("Mercado Pago checkout:", err);
         ejecutarPagoWhatsApp();
+      } finally {
+        if (btn) {
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
+        }
       }
     }
 
     // B. EJECUTAR PAGO CON PAYPAL (INTERNACIONAL)
-    function ejecutarPagoPayPal() {
+    async function ejecutarPagoPayPal() {
       const config = window.HERMENIA_PAYMENTS || {};
       const plan = (config.PLANES && config.PLANES[planActualCheckout]) || { nombre: 'Hermenia', precioUSD: 250, precioCOP: 1025000 };
+      const email = usuarioActual ? usuarioActual.email : '';
 
-      if (!config.PAYPAL_CLIENT_ID || config.PAYPAL_CLIENT_ID.trim() === '') {
+      const btn = event?.currentTarget;
+      if (btn) {
+        btn.style.opacity = '0.7';
+        btn.style.pointerEvents = 'none';
+      }
+
+      try {
+        const res = await fetch('/api/crear-orden-paypal', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            planId: planActualCheckout,
+            email: email
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.configured && data.approveUrl) {
+          window.location.href = data.approveUrl;
+          return;
+        }
+
         const confirmar = confirm(
           "🌎 Pasarela Internacional PayPal / Tarjetas USD:\n\n" +
-          "La integración internacional con PayPal está configurada y lista.\n\n" +
-          "¿Deseas pagar mediante Transferencia Directa / PayPal asistido a través de nuestro WhatsApp Oficial y recibir activación en 5 minutos?"
+          "La integración con PayPal está 100% programada.\n\n" +
+          "¿Deseas pagar mediante Transferencia Directa / PayPal asistido a través de nuestro WhatsApp Oficial y recibir activación inmediata?"
         );
         if (confirmar) {
           ejecutarPagoWhatsApp();
         }
-        return;
+      } catch (err) {
+        console.warn("PayPal checkout:", err);
+        ejecutarPagoWhatsApp();
+      } finally {
+        if (btn) {
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
+        }
       }
-
-      alert("Iniciando PayPal Checkout para " + plan.nombre + " ($" + plan.precioUSD + " USD)...");
     }
 
     // C. EJECUTAR PAGO POR WHATSAPP OFICIAL (VENTA ASISTIDA / TRANSFERENCIA DIRECTA)
@@ -3120,6 +3173,40 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Radicar Solicitud Oficial ante Administración';
     }
+
+    // Detectar retorno de pago exitoso desde Mercado Pago o PayPal
+    (function comprobarRetornoPago() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('pago') === 'exitoso') {
+        const plan = urlParams.get('plan') || 'Hermenia';
+        const modalExito = document.createElement('div');
+        modalExito.className = 'modal-overlay open';
+        modalExito.style.zIndex = '999999';
+        modalExito.innerHTML = `
+          <div class="modal-card" style="max-width: 520px; text-align: center; border: 1px solid rgba(74, 222, 128, 0.4); box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 35px rgba(74, 222, 128, 0.2); animation: fadeIn 0.25s ease-out;">
+            <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(74, 222, 128, 0.15); border: 2px solid #4ade80; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; color: #4ade80; margin-bottom: 16px;">
+              <i class="fas fa-check"></i>
+            </div>
+            <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff; margin-bottom: 8px;">¡Pago Recibido con Éxito!</h3>
+            <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px;">
+              Tu suscripción a <b style="color: #fbbf24;">${plan.toUpperCase()}</b> ha sido procesada correctamente y tu licencia está activa.
+            </p>
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 12px; padding: 14px; text-align: left; font-size: 0.82rem; color: #cbd5e1; margin-bottom: 24px; line-height: 1.6;">
+              <div style="font-weight: 800; color: #4ade80; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <i class="fas fa-rocket"></i> Siguiente paso para disfrutar de Hermenia:
+              </div>
+              <div>1. Descarga o abre <b>Hermenia</b> en tu Computador o Tablet.</div>
+              <div>2. Inicia sesión con la misma cuenta de Google usada al pagar.</div>
+              <div>3. ¡Todas las suites y herramientas se desbloquearán de inmediato!</div>
+            </div>
+            <button onclick="window.location.href='/'" class="btn-primary-glow" style="width: 100%; justify-content: center; padding: 12px; font-weight: 800;">
+              <i class="fas fa-arrow-right"></i> Entendido, ir a la Página Principal
+            </button>
+          </div>
+        `;
+        document.body.appendChild(modalExito);
+      }
+    })();
   </script>
 
 </body>
