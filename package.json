@@ -1,0 +1,9 @@
+{
+  "name": "hermenia-web",
+  "version": "1.0.4",
+  "description": "Hermenia Web Platform and Payment Webhooks",
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1"
+  }
+}
