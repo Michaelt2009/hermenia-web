@@ -10,7 +10,7 @@
 window.HERMENIA_PAYMENTS = {
   // 1. MERCADO PAGO (Colombia & Latinoamérica: PSE, Nequi, Daviplata, Tarjetas COP)
   // Cuando tengas tus credenciales, pega tu Llave Pública aquí (empieza por TEST- o APP_USR-):
-  MERCADOPAGO_PUBLIC_KEY: "",
+  MERCADOPAGO_PUBLIC_KEY: "BAAiZdjj4_reY1tqeoFktJ7QF80KO5Q8rtn33UIltvCVuoRzVqtEvLDN0SMbMfIbIurfi6kGF5LhkJ3HWk",
 
   // 2. PAYPAL DEVELOPER (Internacional / Pagos en Dólares USD de cualquier país)
   // Cuando tengas tus credenciales, pega tu Client ID de PayPal aquí:
