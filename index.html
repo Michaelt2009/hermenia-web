@@ -2056,7 +2056,7 @@
           <p style="color: #cbd5e1; font-size: 0.9rem; max-width: 620px; margin: 0 auto 18px auto; line-height: 1.6;">
             El Administrador de Hermenia ha recibido tu expediente. Tu cuenta quedará habilitada en el panel central y recibirás confirmación inmediata.
           </p>
-          <a id="btnWhatsAppAdminDirecto" href="#" target="_blank" style="background: #22c55e; color: #070d19; text-decoration: none; padding: 12px 22px; border-radius: 10px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);">
+          <a id="btnWhatsAppAdminDirecto" href="https://wa.me/573161492880?text=%C2%A1Hola%20Administraci%C3%B3n%20Hermenia!%20Deseo%20solicitar%20mi%20licencia." target="_blank" rel="noopener noreferrer" style="background: #22c55e; color: #070d19; text-decoration: none; padding: 12px 22px; border-radius: 10px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);">
             <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Notificar Inmediatamente a Administración por WhatsApp
           </a>
         </div>
@@ -2553,7 +2553,7 @@
         <p style="color: #cbd5e1; font-size: 0.82rem; margin-bottom: 14px;">
           Administración ha recibido tu cuenta de Google. Tu licencia se activará en breve.
         </p>
-        <a id="btnWhatsAppDirecto" href="#" target="_blank" style="background: #22c55e; color: #070d19; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 8px;">
+        <a id="btnWhatsAppDirecto" href="https://wa.me/573161492880?text=%C2%A1Hola%20Administraci%C3%B3n%20Hermenia!%20Deseo%20solicitar%20mi%20licencia." target="_blank" rel="noopener noreferrer" style="background: #22c55e; color: #070d19; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 8px;">
           <i class="fab fa-whatsapp"></i> Notificar a Administración por WhatsApp
         </a>
       </div>
@@ -2949,10 +2949,11 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     }
 
     // C. EJECUTAR PAGO POR WHATSAPP OFICIAL (VENTA ASISTIDA / TRANSFERENCIA DIRECTA)
-    function ejecutarPagoWhatsApp() {
+    function ejecutarPagoWhatsApp(planId) {
+      const pId = planId || planActualCheckout || 'vitalicia';
       const config = window.HERMENIA_PAYMENTS || {};
       const numero = config.WHATSAPP_NUMERO || '573161492880';
-      const plan = (config.PLANES && config.PLANES[planActualCheckout]) || { nombre: 'Licencia Vitalicia', precioUSD: 250, precioCOP: 1025000 };
+      const plan = (config.PLANES && config.PLANES[pId]) || { nombre: 'Licencia Vitalicia', precioUSD: 250, precioCOP: 1025000 };
       const email = usuarioActual ? usuarioActual.email : '[Pendiente de indicar]';
       const nombre = usuarioActual?.user_metadata?.full_name || 'Pastor / Investigador';
 
@@ -2963,7 +2964,19 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
         "🏛️ Por favor compártanme los datos de Bancolombia / Nequi / Daviplata / Zelle para realizar el pago y activar mi licencia. ¡Muchas gracias!"
       );
 
-      window.open('https://wa.me/' + numero + '?text=' + texto, '_blank');
+      const url = 'https://wa.me/' + numero + '?text=' + texto;
+
+      try {
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => link.remove(), 250);
+      } catch (e) {
+        window.location.href = url;
+      }
     }
 
     function _iniciarSolicitudLicenciaLegacy(tipoPlan) {
@@ -3209,5 +3222,9 @@ try { if (window.supabase && window.supabase.createClient) { supabaseClient = wi
     })();
   </script>
 
+  <!-- BOTÓN FLOTANTE PERMANENTE DE WHATSAPP OFICIAL -->
+  <a href="https://wa.me/573161492880?text=%C2%A1Hola%20Hermenia!%20Deseo%20informaci%C3%B3n%20para%20adquirir%20mi%20licencia." target="_blank" rel="noopener noreferrer" id="btnWhatsAppFlotante" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; background: #22c55e; color: #ffffff; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; box-shadow: 0 10px 25px rgba(34, 197, 94, 0.45); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Hablar por WhatsApp con un Asesor de Hermenia">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 </body>
 </html>
