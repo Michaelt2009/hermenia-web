@@ -20,7 +20,7 @@ window.HERMENIA_PAYMENTS = {
   WHATSAPP_NUMERO: "573161492880",
 
   // 4. MODO DE PRUEBAS (true = pruebas con tarjetas simuladas; false = cobro con dinero real)
-  MODO_PRUEBAS: true,
+  MODO_PRUEBAS: false,
 
   // 5. CATÁLOGO DE PLANES OFICIALES Y PRECIOS
   PLANES: {
